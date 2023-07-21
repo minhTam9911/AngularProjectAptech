@@ -1,0 +1,106 @@
+<link href="/assets/admin/css/companyDetailsStyle.css" rel="stylesheet" type="text/scss">
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css'>
+  
+<div class="container">
+
+    <div class="col-lg-8 card m-5 p-5" style="position: absolute;
+                        right: 182px; background-color:rgb(167, 216, 224)">
+        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Policy</h1>
+        <ng-container *ngIf="formAdd !=null">
+        <form [formGroup]="formAdd" (ngSubmit)="save()">
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('policyName').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['policyName'])">Policy Name
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('minlength',['policyName'])">Policy Name
+                        shouldn't be under 5 char</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('maxlength',['policyName'])">Policy Name
+                        shouldn't be over 50 char</span>
+                </div>
+                <input type="text" class="form-control" formControlName="policyName">
+                <label>Policy Name</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('policyDesc').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['policyDesc'])">Policy Description
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('minlength',['policyDesc'])">Policy Description
+                        shouldn't be under 5 char</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('maxlength',['policyDesc'])">Policy Description
+                        shouldn't be over 255 char</span>
+
+                </div>
+                <input type="text" class="form-control" id="email-field" formControlName="policyDesc">
+                <label for="email-field">Policy Description</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('amount').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['amount'])">Amount
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px" *ngIf="formAdd.hasError('pattern',['amount'])">Amount
+                        is not valid. Ex: 12345.67 or 1234567.89</span>
+
+                </div>
+
+                <input type="text" class="form-control" id="email-field" formControlName="amount">
+                <label for="textarea-field">Amount</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('emi').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['emi'])">Emi
+                        shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px" *ngIf="formAdd.hasError('pattern',['emi'])">Emi
+                            is not valid. Ex: 12345.67 or 1234567.89</span>
+                </div>
+                <input type="text" class="form-control"  formControlName="emi">
+                <label for="textarea-field">Emi</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('medicalid').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['medicalid'])">Medicalid
+                        shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('minlength',['medicalid'])">Medicalid
+                        shouldn't be under 5 char</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('maxlength',['medicalid'])">Medicalid
+                        shouldn't be over 50 char</span>
+                </div>
+                <input type="text" class="form-control"  formControlName="medicalid">
+                <label for="textarea-field">Medicalid</label>
+            </div>
+            <div class="form-group input-material">
+                
+                <div class="container" style="display: initial; margin-top: -4px;">
+                    <ng-container *ngIf="company != null">
+                    <select  formControlName="companyId" class="form-control" style="">
+                      <ng-container *ngFor="let i of company">
+                        <option value="{{i.companyId}}">{{i.companyName}}</option>
+                      </ng-container>
+                    </select>
+                    <label for="textarea-field">Company</label>
+                </ng-container>
+                    </div>      
+            </div>
+            <div class="text-center">
+                <p-toast></p-toast>
+                <button type="submit" pButton pRipple label="Show"
+                    class="btn btn-primary" [disabled]="formAdd.invalid">Submit</button>
+            </div>
+        </form>
+    </ng-container>
+    </div>
+</div>
+<script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js'></script>

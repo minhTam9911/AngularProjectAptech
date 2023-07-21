@@ -1,0 +1,268 @@
+<link href="/assets/admin/css/companyDetailsStyle.css" rel="stylesheet" type="text/scss">
+<style>
+    .margin-bottom {
+        margin-bottom: -12px;
+    }
+
+    span.p-inputswitch-slider {
+        margin-bottom: -13px;
+    }
+</style>
+<div class="container">
+
+    <div class="col-lg-8 card m-5 p-5" style="position: absolute;
+                        right: 182px; background-color:rgb(167, 216, 224)">
+        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Emp Register</h1>
+        <form [formGroup]="formAdd" method="post" (ngSubmit)="save()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('firstName').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['firstName'])">First Name
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['firstName'])">First Name
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['firstName'])">First Name
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="firstName">
+                    <label>First Name</label>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('lastName').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['lastName'])">Last Name
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['lastName'])">Last Name
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['lastName'])">Last Name
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="lastName">
+                    <label>Last Name</label>
+                </div>
+
+            </div>
+
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('email').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['email'])">Email
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px" *ngIf="formAdd.hasError('pattern',['email'])">Email
+                        Invalid</span>
+
+                </div>
+                <input type="text" class="form-control" formControlName="email">
+                <label>Email</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('userName').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['userName'])">User Name
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('minlength',['userName'])">User Name
+                        shouldn't be under 5 char</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('maxlength',['userName'])">User Name
+                        shouldn't be over 255 char</span>
+                </div>
+                <input type="text" class="form-control" formControlName="userName">
+                <label>User Name</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('password').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['password'])">Password
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('pattern',['password'])">Password Invalid. Minimum eight characters, at
+                        least one uppercase letter, one lowercase letter, one number and one special character.</span>
+                </div>
+                <input type="text" class="form-control" formControlName="password">
+                <label>Password</label>
+            </div>
+            <div class="form-group input-material">
+                <div *ngIf="formAdd.get('address').touched">
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('required',['address'])">Address
+                        shouldn't be empty</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('minlength',['address'])">Address
+                        shouldn't be under 5 char</span>
+                    <span class="text-danger" style="font-size:12px"
+                        *ngIf="formAdd.hasError('maxlength',['address'])">Address
+                        shouldn't be over 150 char</span>
+
+                </div>
+                <input type="text" class="form-control" id="email-field" formControlName="address">
+                <label for="email-field">Address</label>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <div *ngIf="formAdd.get('state').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['state'])">State
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['state'])">State
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['state'])">State
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="state">
+                    <label>State</label>
+
+                </div>
+                <div class="col-md-4">
+                    <div *ngIf="formAdd.get('country').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['country'])">country
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['country'])">country
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['country'])">country
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="country">
+                    <label>Country</label>
+
+                </div>
+                <div class="col-md-4">
+                    <div *ngIf="formAdd.get('city').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['city'])">City
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['city'])">City
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['city'])">City
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="city">
+                    <label>City</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('contactNo').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['contactNo'])">Contact No
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['contactNo'])">Contact No
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['contactNo'])">Contact No
+                            shouldn't be over 50 char</span>
+                    </div>
+
+                    <input type="text" class="form-control" id="email-field" formControlName="contactNo">
+                    <label for="textarea-field">ContactNo</label>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('designation').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['designation'])">Designation
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['designation'])">Designation
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['designation'])">Designation
+                            shouldn't be over 50 char</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="designation">
+                    <label>Designation</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p-calendar formControlName="joinDate" dateFormat="dd-mm-yy" dataType="string" ></p-calendar><br>
+                    <label>Joih Date</label>
+                </div>
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('salary').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['salary'])">Salary
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('pattern',['salary'])">Salary must be numberic..</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="salary">
+                    <label>Salary</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="container" style="display: initial;">
+                        <div *ngIf="formAdd.get('roleName').touched">
+                            <span class="text-danger" style="font-size:12px"
+                                *ngIf="formAdd.hasError('required',['roleName'])">Role Name
+                                shouldn't be empty</span>
+
+                        </div>
+                        <select formControlName="roleName" class="form-select">
+                            <option value="Accountant">Accountant</option>
+                            <option value="HR Manager">HR Manager</option>
+                            <option value="Employee">Employee</option>
+                            <option value="Admin">Admin</option>
+                            <option value="User">User</option>
+                        </select>
+                        <label for="textarea-field">Role</label>
+                    </div>
+                </div>
+                <div class="col-md-6">
+
+                    <div class="container" style="display: initial;">
+                        <div *ngIf="formAdd.get('policyId').touched">
+                            <span class="text-danger" style="font-size:12px"
+                                *ngIf="formAdd.hasError('required',['policyId'])">Policy
+                                shouldn't be empty</span>
+
+                        </div>
+                        <ng-container *ngIf="policy!= null">
+                            <select formControlName="policyId" class="form-select">
+                                <ng-container *ngFor="let i of policy">
+                                    <option value="{{i.policyId}}">{{i.policyId}} - {{i.policyName}}</option>
+                                </ng-container>
+                            </select>
+                            <label for="textarea-field">Policy</label>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6"><label for="textarea-field">Account Status :
+                    </label><p-inputSwitch class="margin-bottom" formControlName="accountStatus"></p-inputSwitch>
+                </div>
+                <div class="col-md-6">
+                    <label for="textarea-field">Policy Status : </label><p-inputSwitch class="margin-bottom"
+                        formControlName="policyStatus"></p-inputSwitch>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <p-toast></p-toast>
+                <button type="submit" pButton pRipple class="btn btn-primary"
+                    >Submit</button>
+                    <!-- [disabled]="formAdd.invalid" -->
+            </div>
+        </form>
+    </div>
+    
+</div>
