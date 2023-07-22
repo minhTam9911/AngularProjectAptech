@@ -65,22 +65,18 @@
                 <label for="textarea-field">Emi</label>
             </div>
             <div class="form-group input-material">
-                <div *ngIf="formAdd.get('medicalid').touched">
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['medicalid'])">Medicalid
-                        shouldn't be empty</span>
-                        <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('minlength',['medicalid'])">Medicalid
-                        shouldn't be under 5 char</span>
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('maxlength',['medicalid'])">Medicalid
-                        shouldn't be over 50 char</span>
-                </div>
-                <input type="text" class="form-control"  formControlName="medicalid">
-                <label for="textarea-field">Medicalid</label>
+                <div class="container" style="display: initial; margin-top: -4px;">
+                    <ng-container *ngIf="medical != null">
+                    <select  formControlName="medicalid" class="form-control" style="">
+                      <ng-container *ngFor="let i of medical">
+                        <option value="{{i.hospitalId}}">{{i.hospitalName}}</option>
+                      </ng-container>
+                    </select>
+                    <label for="textarea-field">Medical</label>
+                </ng-container>
+                    </div>      
             </div>
             <div class="form-group input-material">
-                
                 <div class="container" style="display: initial; margin-top: -4px;">
                     <ng-container *ngIf="company != null">
                     <select  formControlName="companyId" class="form-control" style="">
@@ -94,7 +90,7 @@
             </div>
             <div class="text-center">
                 <p-toast></p-toast>
-                <button type="submit" pButton pRipple label="Show"
+                <button type="submit" pButton pRipple
                     class="btn btn-primary" [disabled]="formAdd.invalid">Submit</button>
             </div>
         </form>

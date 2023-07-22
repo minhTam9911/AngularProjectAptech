@@ -6,6 +6,8 @@ import { CompanyDetailService } from "src/service/admin/companyDetail.sevice";
 import { Result } from "src/service/result.service";
 import { Policy } from "src/model/policy.model";
 import { PolicyService } from "src/service/admin/policy.service";
+import { Hospital } from "src/model/hospitalInfo.model";
+import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 
 @Component({
     templateUrl: './addPolicy.component.html'
@@ -17,10 +19,12 @@ export class    AddPolicyAdminComponent implements OnInit {
     company: CompanyDetail[];
     formAdd: FormGroup;
     policy: Policy;
+    medical:Hospital[]
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
         private companyService: CompanyDetailService,
-        private policyService : PolicyService
+        private policyService : PolicyService,
+        private hospitalService:HospitalInforService
         ){}
 
    async ngOnInit() {
@@ -28,13 +32,17 @@ export class    AddPolicyAdminComponent implements OnInit {
             res =>  this.company = res as CompanyDetail[],
             err => console.log(err)
         );
+        await this.hospitalService.findAll().then(
+            res =>  this.medical = res as Hospital[],
+            err => console.log(err)
+        );
     this.formAdd =   this.formBuilder.group({
             policyName:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
             policyDesc:["",[Validators.required, Validators.minLength(5),Validators.maxLength(255)]],
             amount:["",[Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
             emi:["",[Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
-            companyId:1,
-            medicalid:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
+            companyId:"",
+            medicalid:"",
 
        })
        console.log(this.company)

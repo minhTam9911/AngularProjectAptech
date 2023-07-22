@@ -1,3 +1,6 @@
+<style>
+  
+</style>
 <div class="row">
   <div class="col-12">
     <div class="card mb-4">
@@ -54,33 +57,41 @@
                     <span class="badge badge-sm bg-gradient-success">{{emp.username}}</span>
                   </td>
                   <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{emp.email}}</span>
+                    <span class="badge badge-sm bg-gradient-success">{{emp.email}}</span>
                   </td>
                   <td class="align-middle">
                     <button class="btn btn-warning" style="margin-right:5px" (click)="update(emp.empNo)"><i
                         class="pi pi-cog" style="font-size: 1rem"></i> Edit</button>
-                    <button class="btn btn-danger"style="margin-right:5px" (click)="delete(emp.empNo)" type="submit"><i class="pi pi-trash"
-                        style="font-size: 1rem"></i> Delete</button>
-                    <button (click)="showModelDialog()"   class="btn btn-info"><i class="pi pi-external-link"></i> Show</button>
+                    <button class="btn btn-danger" style="margin-right:5px" (click)="delete(emp.empNo)" type="submit"><i
+                        class="pi pi-trash" style="font-size: 1rem"></i> Delete</button>
+                    <button (click)="showModelDialog(emp.empNo)" class="btn btn-info"><i
+                        class="pi pi-external-link"></i> Show</button>
 
-                        <p-dialog header="Information Employee" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw',height: '400px'}"
-                           [draggable]="false" [resizable]="false">
-                          <p>Lorem ipsum dolor sit amet, 
-                            <br>consectetur adipiscing elit, 
-                            <br>sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua. 
-                            <br>Ut enim ad minim veniam, quis nostrud
-                            exercitation
-                            <br>
-                            ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim
-                            id est laborum.</p>
-                        </p-dialog>
-                        
-      
+                    <p-dialog header="Information Employee" [(visible)]="displayModal" [modal]="true"
+                      [style]="{width: '35vw',height: '70vw',backgroundColor:'var(--bluegray-100)'}" [draggable]="false" [resizable]="false">
+                      <ng-container *ngIf="emp !=null">
+                        <div class="text-center">
+                          <p class="btn btn-primary">EmpNo: {{emp.empNo}}</p><br>
+                          <p class="btn btn-primary">Designation: {{emp.designation}} </p><br>
+                          <p class="btn btn-primary">JoinDate: {{emp.joinDate}}</p><br>
+                          <p class="btn btn-primary">Salary: {{emp.salary}}</p><br>
+                          <p class="btn btn-primary">FirstName: {{emp.firstName}}</p><br>
+                          <p class="btn btn-primary">LastName: {{emp.lastName}}</p><br>
+                          <p class="btn btn-primary">Email: {{emp.email}}</p><br>
+                          <p class="btn btn-primary">UserName: {{emp.username}} </p><br>
+                          <p class="btn btn-primary">Address: {{emp.address}}</p><br>
+                          <p class="btn btn-primary">ContactNo: {{emp.contactNo}}</p><br>
+                          <p class="btn btn-primary">State: {{emp.state}}</p><br>
+                          <p class="btn btn-primary">Country: {{emp.country}}</p><br>
+                          <p class="btn btn-primary">City: {{emp.city}}</p><br>
+                          <p class="btn btn-primary">Account Status: {{emp.accountStatus}}</p><br>
+                        </div>
+                      </ng-container>
+
+
+                    </p-dialog>
+
+
                   </td>
 
                 </tr>

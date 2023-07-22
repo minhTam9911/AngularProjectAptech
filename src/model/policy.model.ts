@@ -6,5 +6,6 @@ export class Policy{
     emi:number;
     companyId:number;
     companyName:string;
-    medicalid:string;
+    medicalid:number;
+    medicalName:string
 }

@@ -7,6 +7,8 @@ import { Result } from "src/service/result.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { PolicyService } from "src/service/admin/policy.service";
 import { Policy } from "src/model/policy.model";
+import { Hospital } from "src/model/hospitalInfo.model";
+import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 
 @Component({
     templateUrl: './updatePolicy.component.html'
@@ -18,16 +20,22 @@ export class EditPolicyAdminComponent implements OnInit {
     company: CompanyDetail[];
     formAdd: FormGroup;
     policy: Policy
+    medical:Hospital[]
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
         private companyService: CompanyDetailService,
         private routerAcive: ActivatedRoute,
-        private policyService: PolicyService
+        private policyService: PolicyService,
+        private hospitalService:HospitalInforService
     ) { }
 
    async ngOnInit() {
         await this.companyService.findAll().then(
             res =>  this.company = res as CompanyDetail[],
+            err => console.log(err)
+        );
+        await this.hospitalService.findAll().then(
+            res =>  this.medical = res as Hospital[],
             err => console.log(err)
         );
         this.routerAcive.paramMap.subscribe(value => {
@@ -58,10 +66,10 @@ export class EditPolicyAdminComponent implements OnInit {
                 this.result = res as Result;
                 console.log(this.result)
                 if (this.result) {
-                    this.messageService.add({ severity: "success", summary: "Add Success", detail: "Company add successful" })
+                    this.messageService.add({ severity: "success", summary: "Add Success", detail: "Policy add successful" })
                 }
                 else {
-                    this.messageService.add({ severity: "error", summary: "Add Success", detail: "Company add fail" })
+                    this.messageService.add({ severity: "error", summary: "Add Success", detail: "Policy add fail" })
                 }
             },
 

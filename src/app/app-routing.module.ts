@@ -7,6 +7,9 @@ import { DashBoardComponent } from 'src/component/admin/dashboard.component';
 import { AddEmpRegisterAdminComponent } from 'src/component/admin/empRegister/addEmpRegister.component';
 import { EmpRegisterAdminComponent } from 'src/component/admin/empRegister/empRegister.component';
 import { HomeAdminComponent } from 'src/component/admin/home/home.component';
+import { AddHospitalAdminComponent } from 'src/component/admin/hospital/addHospital.component';
+import { HospitalAdminComponent } from 'src/component/admin/hospital/hospital.component';
+import { EditHospitalAdminComponent } from 'src/component/admin/hospital/updateHospital.component';
 import { LoginAdminComponent } from 'src/component/admin/login/login.component';
 import { AddPolicyAdminComponent } from 'src/component/admin/polices/addPolicy.component';
 import { PolicyAdminComponent } from 'src/component/admin/polices/policy.component';
@@ -25,6 +28,9 @@ const routes: Routes = [
     {path:"addCompany", component:AddCompanyAdminComponent},
     {path:"company", component:CompanyAdminComponent},
     {path:"update-company", component:EditCompanyAdminComponent},
+    {path:"addHospital", component:AddHospitalAdminComponent},
+    {path:"hospital", component:HospitalAdminComponent},
+    {path:"update-hospital", component:EditHospitalAdminComponent},
     {path:"policy",component:PolicyAdminComponent},
     {path:"update-policy", component:EditPolicyAdminComponent},
     {path:"addPolicy",component:AddPolicyAdminComponent},

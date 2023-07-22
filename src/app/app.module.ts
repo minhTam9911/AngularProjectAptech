@@ -32,6 +32,10 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DialogModule } from 'primeng/dialog';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { LoginService } from 'src/service/admin/login.service';
+import { AddHospitalAdminComponent } from 'src/component/admin/hospital/addHospital.component';
+import { HospitalAdminComponent } from 'src/component/admin/hospital/hospital.component';
+import { EditHospitalAdminComponent } from 'src/component/admin/hospital/updateHospital.component';
+import { HospitalInforService } from 'src/service/admin/hospitalInfo.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +50,10 @@ import { LoginService } from 'src/service/admin/login.service';
      PolicyAdminComponent,
      AddEmpRegisterAdminComponent,
      EmpRegisterAdminComponent,
-     LoginAdminComponent
+     LoginAdminComponent,
+     AddHospitalAdminComponent,
+     HospitalAdminComponent,
+     EditHospitalAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +72,7 @@ import { LoginService } from 'src/service/admin/login.service';
     
     
   ],
-  providers: [MessageService,ConfirmationService, CompanyDetailService, BaseUrl, PolicyService, EmpRegisterService, LoginService],
+  providers: [MessageService,ConfirmationService,HospitalInforService, CompanyDetailService, BaseUrl, PolicyService, EmpRegisterService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

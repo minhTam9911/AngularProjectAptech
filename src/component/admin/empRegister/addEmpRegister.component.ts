@@ -49,8 +49,6 @@ export class AddEmpRegisterAdminComponent implements OnInit {
       state:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
       country:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
       city:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
-      policyStatus:["",[Validators.required]],
-      policyId:["",[Validators.required]],
       roleName:["",[Validators.required]],
       accountStatus:[false,[Validators.required]],
       email:["",[Validators.required,Validators.pattern("[a-z0-9]+@[a-z]+\.[a-z]{2,3}")]],

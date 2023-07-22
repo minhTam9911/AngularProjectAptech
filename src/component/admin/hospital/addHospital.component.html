@@ -3,71 +3,71 @@
 
     <div class="col-lg-8 card m-5 p-5" style="position: absolute;
                         right: 182px; background-color:rgb(167, 216, 224)">
-        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Company Detail</h1>
+        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Hospital Information</h1>
         <form [formGroup]="formAdd" (ngSubmit)="save()">
             <div class="form-group input-material">
-                <div *ngIf="formAdd.get('companyName').touched">
+                <div *ngIf="formAdd.get('hospitalName').touched">
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['companyName'])">Company Name
+                        *ngIf="formAdd.hasError('required',['hospitalName'])">Hospital Name
                         shouldn't be empty</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('minlength',['companyName'])">Company Name
-                        shouldn't be under 5 char</span>
+                        *ngIf="formAdd.hasError('minlength',['hospitalName'])">Hospital Name
+                        shouldn't be under 3 char</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('maxlength',['companyName'])">Company Name
+                        *ngIf="formAdd.hasError('maxlength',['hospitalName'])">Hospital Name
                         shouldn't be over 50 char</span>
                 </div>
-                <input type="text" class="form-control" formControlName="companyName">
-                <label>Company Name</label>
+                <input type="text" class="form-control" formControlName="hospitalName">
+                <label>Hospital Name</label>
             </div>
             <div class="form-group input-material">
-                <div *ngIf="formAdd.get('address').touched">
+                <div *ngIf="formAdd.get('location').touched">
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['address'])">Address
+                        *ngIf="formAdd.hasError('required',['location'])">Location
                         shouldn't be empty</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('minlength',['address'])">Address
-                        shouldn't be under 5 char</span>
+                        *ngIf="formAdd.hasError('minlength',['location'])">Location
+                        shouldn't be under 3 char</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('maxlength',['address'])">Address
+                        *ngIf="formAdd.hasError('maxlength',['location'])">Location
                         shouldn't be over 150 char</span>
 
                 </div>
-                <input type="text" class="form-control" id="email-field" formControlName="address">
-                <label for="email-field">Address</label>
+                <input type="text" class="form-control" id="email-field" formControlName="location">
+                <label for="email-field">location</label>
             </div>
             <div class="form-group input-material">
-                <div *ngIf="formAdd.get('phone').touched">
+                <div *ngIf="formAdd.get('phoneNo').touched">
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['phone'])">Phone
+                        *ngIf="formAdd.hasError('required',['phoneNo'])">Phone
                         shouldn't be empty</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('minlength',['phone'])">Phone
+                        *ngIf="formAdd.hasError('minlength',['phoneNo'])">Phone
                         shouldn't be under 8 char</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('maxlength',['phone'])">Phone
+                        *ngIf="formAdd.hasError('maxlength',['phoneNo'])">Phone
                         shouldn't be over 20 char</span>
-                    <span class="text-danger" style="font-size:12px" *ngIf="formAdd.hasError('pattern',['phone'])">Phone
+                    <span class="text-danger" style="font-size:12px" *ngIf="formAdd.hasError('pattern',['phoneNo'])">Phone
                         is not valid, Phone can only be number</span>
 
                 </div>
 
-                <input type="text" class="form-control" id="email-field" formControlName="phone">
-                <label for="textarea-field">Phone</label>
+                <input type="text" class="form-control" id="email-field" formControlName="phoneNo">
+                <label for="textarea-field">PhoneNo</label>
             </div>
             <div class="form-group input-material">
-                <div *ngIf="formAdd.get('companyUrl').touched">
+                <div *ngIf="formAdd.get('url').touched">
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['companyUrl'])">Company Url
+                        *ngIf="formAdd.hasError('required',['url'])">Url
                         shouldn't be empty</span>
                     <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('pattern',['companyUrl'])">Company Url
+                        *ngIf="formAdd.hasError('pattern',['url'])">Url
                         is not valid. (Ex: http://abc.org or https://abc.org)</span>
 
 
                 </div>
-                <input type="text" class="form-control" id="email-field" formControlName="companyUrl">
-                <label for="textarea-field">Company Url</label>
+                <input type="text" class="form-control" id="email-field" formControlName="url">
+                <label for="textarea-field">Url</label>
             </div>
             <div class="text-center">
                 <p-toast></p-toast>

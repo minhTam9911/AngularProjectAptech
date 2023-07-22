@@ -5,30 +5,26 @@ import {  MessageService } from 'primeng/api';
 import { CompanyDetailService } from "src/service/admin/companyDetail.sevice";
 import { Result } from "src/service/result.service";
 import { Router } from "@angular/router";
-import { EmpRegisterService } from "src/service/admin/empRegister.service";
-import { EmpRegister } from "src/model/empRegister.model";
+import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
+import { Hospital } from "src/model/hospitalInfo.model";
 
 @Component({
-    templateUrl: './empRegister.component.html'
+    templateUrl: './hospital.component.html'
 })
 
 
-export class   EmpRegisterAdminComponent implements OnInit {
+export class    HospitalAdminComponent implements OnInit {
     result: Result
-    companies: CompanyDetail[];
+    hospitales: Hospital[];
     formAdd: FormGroup;
-    empRegisteres: EmpRegister[]
-    emp: EmpRegister
     page : number=1;
     count : number = 0;
     tableSize : number=10;
     tableSizes :any = [5,10,15,20];
-    displayModal: boolean;
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
-        private companyService: CompanyDetailService,
-        private router: Router,
-        private employeeService: EmpRegisterService
+        private hospitalService: HospitalInforService,
+        private router: Router
         ){}
 
     ngOnInit(): void {
@@ -36,9 +32,10 @@ export class   EmpRegisterAdminComponent implements OnInit {
     }
 
     getAll(){
-      this.employeeService.findAll().then(
+      this.hospitalService.findAll().then(
         res =>{
-            this.empRegisteres = res as EmpRegister[];
+            this.hospitales = res as Hospital[];
+            console.log(this.hospitales)
         },
         err =>{console.log(err)}
       )
@@ -54,7 +51,7 @@ export class   EmpRegisterAdminComponent implements OnInit {
 
   }
     async delete(id: number){
-      await this.employeeService.delete(id).then(
+      await this.hospitalService.delete(id).then(
         result =>{
             this.result = result as Result
         },  
@@ -62,29 +59,22 @@ export class   EmpRegisterAdminComponent implements OnInit {
       )
       console.log(this.result)
       if(this.result){
-        await this.messageService.add({severity:"success",summary:"Success",detail:"Delete Emp Register Successful"});
+        await this.messageService.add({severity:"success",summary:"Delete Hospital Detail",detail:"Delete Hospital Successful"});
       }
       else{
-        await this.messageService.add({severity:"error",summary:"Waring",detail:"Delete Emp Register Fail"});
+        await this.messageService.add({severity:"error",summary:"Delete Hospital Detail",detail:"Delete Hospital Fail"});
     
       }
-      await this.employeeService.findAll().then(
+      await this.hospitalService.findAll().then(
         res =>{
-           this.empRegisteres = res as EmpRegister[];
-            
+           this.hospitales = res as Hospital[];
+            console.log(this.hospitales);
+             
         },
         err =>{console.log(err)}
       )
     }
      update(id:number){
-      this.router.navigate(["/admin/update-company",{companyId:id}])
-    }
-    async showModelDialog(emp : number){
-      await this.employeeService.findById(emp).then(
-        res => this.emp = res as EmpRegister,
-        err => console.log(err)
-        )
-      this.displayModal=true;
-    
+      this.router.navigate(["/admin/update-hospital",{hospitalId:id}])
     }
 }

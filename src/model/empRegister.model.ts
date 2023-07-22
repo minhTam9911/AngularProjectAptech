@@ -12,9 +12,8 @@ export class EmpRegister{
     state  :string;
     country  :string;
     city  :string;
-    policyStatus  :string;
-    policyId :number
     roleName  :string;
     accountStatus :boolean
+    securityCode:String;
     email  :string;
 }
