@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CompanyDetail } from "src/model/companyDetail.model";
-import {  MessageService } from 'primeng/api';
+import {  ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { CompanyDetailService } from "src/service/admin/companyDetail.sevice";
 import { Result } from "src/service/result.service";
 import { Router } from "@angular/router";
@@ -22,7 +22,8 @@ export class    CompanyAdminComponent implements OnInit {
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
         private companyService: CompanyDetailService,
-        private router: Router
+        private router: Router,
+        private confirmationService: ConfirmationService
         ){}
 
     ngOnInit(): void {
@@ -49,28 +50,47 @@ export class    CompanyAdminComponent implements OnInit {
 
   }
     async delete(id: number){
-      await this.companyService.delete(id).then(
-        result =>{
-            this.result = result as Result
-        },  
-        err =>{console.log(err)}
-      )
-      console.log(this.result)
-      if(this.result){
-        await this.messageService.add({severity:"success",summary:"Delete Company Detail",detail:"Delete Company Detail Successful"});
-      }
-      else{
-        await this.messageService.add({severity:"error",summary:"Delete Company Detail",detail:"Delete Company Detail Fail"});
-    
-      }
-      await this.companyService.findAll().then(
-        res =>{
-           this.companies = res as CompanyDetail[];
-            console.log(this.companies);
-             
+      await  this.confirmationService.confirm({
+        message: 'Are you sure that you want to delete?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+             this.companyService.delete(id).then(
+              res =>{
+                  this.result = res as Result
+                  if(this.result){
+                    this.messageService.add({severity:"success",summary:"Delete Company Detail",detail:"Delete Company Detail Successful"});
+                 }
+                 else{
+                    this.messageService.add({severity:"error",summary:"Delete Company Detail",detail:"Delete Company Detail Fail"});
+               
+                 }
+                  this.companyService.findAll().then(
+                   res =>{
+                      this.companies = res as CompanyDetail[];
+                       console.log(this.companies);
+                        
+                   },
+                   err =>{console.log(err)}
+                 )
+              },  
+              err =>{console.log(err)}
+            )
+            console.log(this.result)
+           
         },
-        err =>{console.log(err)}
-      )
+        reject: (type) => {
+          var typeS = type as ConfirmEventType
+            switch (typeS) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                    break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                    break;
+            }
+        }
+      });
     }
      update(id:number){
       this.router.navigate(["/admin/update-company",{companyId:id}])

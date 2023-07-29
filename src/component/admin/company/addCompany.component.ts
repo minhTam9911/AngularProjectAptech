@@ -34,10 +34,10 @@ export class    AddCompanyAdminComponent implements OnInit {
             console.log(this.result)
            
             if(this.result){
-                this.messageService.add({severity:"success",summary:"Add Success", detail:"Company add successful"})
+                this.messageService.add({severity:"success",summary:"Successful", detail:"Company add successful"})
                }
                else{
-                   this.messageService.add({severity:"error",summary:"Add Success", detail:"Company add fail"})
+                   this.messageService.add({severity:"error",summary:"Error", detail:"Company add fail"})
                }
             },
             err => console.log(err)

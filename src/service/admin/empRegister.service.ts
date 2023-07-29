@@ -13,10 +13,13 @@ export class EmpRegisterService{
      
      baseUrl:String = String(this.url["base_url"])
      
-     async findAll(){
-         
+     async findAll(){     
          return await lastValueFrom(this.http.get(this.baseUrl+ "empRegister/get"));
      }
+
+     async findByUsername(username:string){     
+        return await lastValueFrom(this.http.get(this.baseUrl+ "empRegister/get-by-username/"+username));
+    }
      
      async create(data:FormData){
          return await lastValueFrom(this.http.post(this.baseUrl + "empRegister/create", data));
@@ -25,9 +28,12 @@ export class EmpRegisterService{
      async delete(id: number){
          return await lastValueFrom(this.http.delete(this.baseUrl + "empRegister/delete/"+ id));
      }
-     async update(empRegister: EmpRegister){
+     async update(empRegister: FormData){
          return await lastValueFrom(this.http.put(this.baseUrl + "empRegister/update", empRegister));
      }
+     async update2(id: number,empRegister: FormData){
+        return await lastValueFrom(this.http.put(this.baseUrl + "empRegister/update2/"+id, empRegister));
+    }
      async findById(id: number){
          return await lastValueFrom(this.http.get(this.baseUrl + "empRegister/find/"+id));
      }

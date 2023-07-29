@@ -70,33 +70,40 @@ label#account_status {
                 <input type="text" class="form-control" formControlName="email">
                 <label>Email</label>
             </div>
-            <div class="form-group input-material">
-                <div *ngIf="formAdd.get('userName').touched">
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['userName'])">User Name
-                        shouldn't be empty</span>
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('minlength',['userName'])">User Name
-                        shouldn't be under 5 char</span>
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('maxlength',['userName'])">User Name
-                        shouldn't be over 255 char</span>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('userName').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['userName'])">User Name
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('minlength',['userName'])">User Name
+                            shouldn't be under 5 char</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('maxlength',['userName'])">User Name
+                            shouldn't be over 255 char</span>
+                            <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('pattern',['userName'])">User Name
+                            invalid</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="userName">
+                    <label>User Name</label>
                 </div>
-                <input type="text" class="form-control" formControlName="userName">
-                <label>User Name</label>
-            </div>
-            <div class="form-group input-material">
-                <div *ngIf="formAdd.get('password').touched">
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('required',['password'])">Password
-                        shouldn't be empty</span>
-                    <span class="text-danger" style="font-size:12px"
-                        *ngIf="formAdd.hasError('pattern',['password'])">Password Invalid. Minimum eight characters, at
-                        least one uppercase letter, one lowercase letter, one number and one special character.</span>
+                <div class="col-md-6">
+                    <div *ngIf="formAdd.get('password').touched">
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('required',['password'])">Password
+                            shouldn't be empty</span>
+                        <span class="text-danger" style="font-size:12px"
+                            *ngIf="formAdd.hasError('pattern',['password'])">Password Invalid. Minimum eight characters, at
+                            least one uppercase letter, one lowercase letter, one number and one special character.</span>
+                    </div>
+                    <input id="password" type="password" class="form-control" formControlName="password">
+                    <label>Password</label>
                 </div>
-                <input type="text" class="form-control" formControlName="password">
-                <label>Password</label>
             </div>
+            
             <div class="form-group input-material">
                 <div *ngIf="formAdd.get('address').touched">
                     <span class="text-danger" style="font-size:12px"
@@ -221,7 +228,7 @@ label#account_status {
 
             <div class="text-center">
                 <p-toast></p-toast>
-                <button type="submit" pButton pRipple class="btn btn-primary"
+                <button type="submit" [disabled]="formAdd.invalid" pButton pRipple class="btn btn-primary"
                     >Submit</button>
                     <!-- [disabled]="formAdd.invalid" -->
             </div>
@@ -229,3 +236,44 @@ label#account_status {
     </div>
     
 </div>
+
+<script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script>
+
+  
+<script id="rendered-js" >
+var myInput = document.getElementById('password'),
+myIcon = document.getElementById('icon');
+
+myInput.onfocus = function () {
+myIcon.style.right = '3px';
+};
+
+myInput.onblur = function () {
+myIcon.style.right = '14px';
+};
+
+myIcon.onclick = function () {
+
+
+
+if (myIcon.classList.contains('fa-eye')) {
+
+this.classList.toggle('fa-eye-slash');
+this.classList.toggle('fa-eye');
+
+myInput.setAttribute('type', 'text');
+
+
+
+} else {
+
+
+myInput.setAttribute('type', 'password');
+
+this.classList.toggle('fa-eye');
+this.classList.toggle('fa-eye-slash');
+
+};
+};
+//# sourceURL=pen.js
+</script>

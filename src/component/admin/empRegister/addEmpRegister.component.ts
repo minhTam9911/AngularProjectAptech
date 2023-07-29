@@ -41,7 +41,7 @@ export class AddEmpRegisterAdminComponent implements OnInit {
       salary: ["", [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
       firstName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       lastName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-      userName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(255)]],
+      userName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(255), Validators.pattern("^[a-zA-Z0-9_]{5,255}$")]],
       password: ["", [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]],
       //Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")]
       address:["",[Validators.required, Validators.minLength(5),Validators.maxLength(150)]],
@@ -49,7 +49,7 @@ export class AddEmpRegisterAdminComponent implements OnInit {
       state:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
       country:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
       city:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],
-      roleName:["",[Validators.required]],
+      roleName:[""],
       accountStatus:[false,[Validators.required]],
       email:["",[Validators.required,Validators.pattern("[a-z0-9]+@[a-z]+\.[a-z]{2,3}")]],
 

@@ -1,0 +1,256 @@
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        function OTPInput() {
+            const inputs = document.querySelectorAll('#otp > *[id]');
+            for (let i = 0; i < inputs.length; i++) { inputs[i].addEventListener('keydown', function (event) { if (event.key === "Backspace") { inputs[i].value = ''; if (i !== 0) inputs[i - 1].focus(); } else { if (i === inputs.length - 1 && inputs[i].value !== '') { return true; } else if (event.keyCode > 47 && event.keyCode < 58) { inputs[i].value = event.key; if (i !== inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } else if (event.keyCode > 64 && event.keyCode < 91) { inputs[i].value = String.fromCharCode(event.keyCode); if (i !== inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } }); }
+        } OTPInput();
+
+
+    });
+</script>
+<style>
+    body {
+        background-color: red
+    }
+
+    .height-100 {
+        height: 100vh
+    }
+
+    .card {
+        width: 400px;
+        border: none;
+        height: 300px;
+        box-shadow: 0px 5px 20px 0px #d2dae3;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    .card h6 {
+        color: red;
+        font-size: 20px
+    }
+
+    .inputs input {
+        width: 40px;
+        height: 40px
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0
+    }
+
+    .card-2 {
+        background-color: #fff;
+        padding: 10px;
+        width: 350px;
+        height: 100px;
+        bottom: -50px;
+        left: 20px;
+        position: absolute;
+        border-radius: 5px
+    }
+
+    .card-2 .content {
+        margin-top: 50px
+    }
+
+    .card-2 .content a {
+        color: red
+    }
+
+    .form-control:focus {
+        box-shadow: none;
+        border: 2px solid red
+    }
+
+    .validate {
+        border-radius: 20px;
+        height: 40px;
+        background-color: red;
+        border: 1px solid red;
+        width: 140px
+    }
+</style>
+<style rel="stylesheet" type="text/scss">
+    @import 'https://static.stayjapan.com/assets/dashboard/application-33c1a06b7784b53cd746d479718b6295c0fcefebb696e78dcee7c68efc92fada.css';
+    
+    .horizontal-container {
+      margin: 0 auto;
+      width: 100%;
+      
+      @media(min-width: 768px) {
+        width: 500px;
+      }
+      
+    
+     
+      @mixin drawCircle {
+        background-color: white;
+        border-radius: 50%; 
+        border: 2px solid #ccc;
+        color: #ccc;
+        display: block;
+        height: 20px;
+        line-height: 18px;
+        margin: 0 auto;
+        text-align: center;
+        width: 20px;
+      }
+    
+      /* Create line */
+      @mixin drawLine {
+        background-color: #e5e5e5;
+        content: '';
+        height: 3px;
+        left: -50%;
+        transform: translateX(50%);
+        position: absolute;
+        top: 9px;
+        width: 100%;
+        z-index: -1;
+      }
+    
+        /* Custom progress bar */
+      .progress-bar-container {
+        position: relative;
+    
+        .custom-progress-bar {
+          counter-reset: step; /* Initial step: 0 */
+          padding-left: 0;
+        }
+    
+        .custom-progress-bar li {
+          float: left;
+          font-size: 12px;
+          list-style: none;
+          position: relative;
+          text-align: center;
+          text-transform: uppercase;
+          width: 50%;
+    
+          &:before {
+            @include drawCircle;
+            content: counter(step);
+            counter-increment: step;
+          }
+    
+          &:after {
+            @include drawLine;
+          }
+    
+          &:last-child {
+            &:before {
+              display: none;
+            }
+            &:after {
+              display: none;
+            }
+          }
+    
+          &.active {
+            &:before {
+              border-color: red;
+              color: red;
+            }    
+          }
+    
+          &.finished {
+            &:before {
+              background-color: red;
+              border-color: red;
+              color: #fff;
+              content: "\2713"
+            }
+          }
+        }
+    
+        .custom-progress-line {
+          height: 3px;
+          position: absolute;
+          content: '';
+          top: 9px;
+          left: 0;
+          width: auto;
+          background-color: red;
+        }
+      }
+     
+    
+      .horizontal-form-box {
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        height: 466px;
+        padding: 30px;
+        
+        .horizontal-info-container {   
+          img {
+            height: 75px;
+            margin-bottom: 20px; 
+          }
+    
+          .horizontal-heading {
+            color: #000;
+            font-size: 22px; 
+            font-weight: bold; 
+            text-transform: capitalize;
+          }
+    
+          .horizontal-subtitle {
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            text-align: left;
+          }
+        }
+      
+        .horizontal-form {
+          label,
+          button {
+            text-transform: capitalize;
+          }
+    
+          label {
+            color: #000;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+    </style>
+<div class="container height-100 d-flex justify-content-center align-items-center">
+    <div class="position-relative">
+      
+    <div class="card p-2 text-center">
+        <form [formGroup]="formVerify" (ngSubmit)="verify()">
+            <h6>Please enter the one time password <br> to verify your account</h6>
+            <div> <span>A code has been sent to: </span> <small style="font-weight: 600;">{{email}}</small>
+            </div>
+            <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input
+                    class="m-2 text-center form-control rounded" type="text" formControlName="first" maxlength="1" />
+                <input class="m-2 text-center form-control rounded" type="text" formControlName="second"
+                    maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text"
+                    formControlName="third" maxlength="1" /> <input class="m-2 text-center form-control rounded"
+                    type="text" formControlName="fourth" maxlength="1" /> <input
+                    class="m-2 text-center form-control rounded" type="text" formControlName="fifth" maxlength="1" />
+                <input class="m-2 text-center form-control rounded" type="text" formControlName="sixth" maxlength="1" />
+            </div>
+            <div class="mt-4"> <button class="btn btn-danger px-4 validate"
+                    [disabled]="formVerify.invalid">Validate</button> </div>
+
+        </form>
+    </div>
+    <div class="card-2">
+        <div class="content d-flex justify-content-center align-items-center"> <span>Didn't get the
+                code:</span><button (click)="reSend()" class="btn btn-link">Resend</button> </div>
+    </div>
+</div>
+</div>
+<p-toast></p-toast>

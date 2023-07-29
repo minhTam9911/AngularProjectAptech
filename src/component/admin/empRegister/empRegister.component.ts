@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { CompanyDetail } from "src/model/companyDetail.model";
-import {  MessageService } from 'primeng/api';
+import {  ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 import { CompanyDetailService } from "src/service/admin/companyDetail.sevice";
 import { Result } from "src/service/result.service";
 import { Router } from "@angular/router";
@@ -28,7 +28,8 @@ export class   EmpRegisterAdminComponent implements OnInit {
         private messageService: MessageService,
         private companyService: CompanyDetailService,
         private router: Router,
-        private employeeService: EmpRegisterService
+        private employeeService: EmpRegisterService,
+        private confirmationService : ConfirmationService
         ){}
 
     ngOnInit(): void {
@@ -39,6 +40,7 @@ export class   EmpRegisterAdminComponent implements OnInit {
       this.employeeService.findAll().then(
         res =>{
             this.empRegisteres = res as EmpRegister[];
+            console.log(res)
         },
         err =>{console.log(err)}
       )
@@ -54,30 +56,50 @@ export class   EmpRegisterAdminComponent implements OnInit {
 
   }
     async delete(id: number){
-      await this.employeeService.delete(id).then(
-        result =>{
-            this.result = result as Result
-        },  
-        err =>{console.log(err)}
-      )
-      console.log(this.result)
-      if(this.result){
-        await this.messageService.add({severity:"success",summary:"Success",detail:"Delete Emp Register Successful"});
-      }
-      else{
-        await this.messageService.add({severity:"error",summary:"Waring",detail:"Delete Emp Register Fail"});
-    
-      }
-      await this.employeeService.findAll().then(
-        res =>{
-           this.empRegisteres = res as EmpRegister[];
-            
+     
+      this.confirmationService.confirm({
+        message: 'Are you sure that you want to delete?',
+        header: 'Confirmation',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+           this.employeeService.delete(id).then(
+            result =>{
+                this.result = result as Result
+                if(this.result){
+                   this.messageService.add({severity:"success",summary:"Success",detail:"Delete Emp Register Successful"});
+                   this.employeeService.findAll().then(
+                    res =>{
+                       this.empRegisteres = res as EmpRegister[];
+                        
+                    },
+                    err =>{console.log(err)}
+                  )
+                }
+                else{
+                   this.messageService.add({severity:"error",summary:"Waring",detail:"Delete Emp Register Fail"});
+              
+                }
+            },  
+            err =>{console.log(err)}
+          )
+          
+           
         },
-        err =>{console.log(err)}
-      )
+        reject: (type) => {
+          var typeS = type as ConfirmEventType
+            switch (typeS) {
+                case ConfirmEventType.REJECT:
+                    this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                    break;
+                case ConfirmEventType.CANCEL:
+                    this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                    break;
+            }
+        }
+      });
     }
      update(id:number){
-      this.router.navigate(["/admin/update-company",{companyId:id}])
+      this.router.navigate(["/admin/edit-emp",{empNo:id}])
     }
     async showModelDialog(emp : number){
       await this.employeeService.findById(emp).then(

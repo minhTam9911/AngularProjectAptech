@@ -16,14 +16,37 @@ import { PolicyAdminComponent } from 'src/component/admin/polices/policy.compone
 import { EditPolicyAdminComponent } from 'src/component/admin/polices/updatePolicy.component';
 import { AuthGuard } from 'src/service/guard/authGuard.serve';
 import { RoleGuard } from 'src/service/guard/roleGuard.service';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { authGuard } from './guard/auth.guard';
+import { AcctiveAccountComponent } from 'src/component/admin/activeAccount/activeAccount.component';
+import { ForgotPasswordAdminComponent } from 'src/component/employee/forgotPasswordEmp.component';
+import { VerifyCodeForgotAccountComponent } from 'src/component/employee/checkCodeChangePass.component';
+import { ChangeForgotPasswordAdminComponent } from 'src/component/employee/changePasswordEmpRegister.component';
+import { EditEmpRegisterAdminComponent } from 'src/component/admin/empRegister/updateEmpRegister.component';
+import { ProfileAdminComponent } from 'src/component/admin/profile/profileAdmin.component';
+import { AddPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/addPoliciesonEmployee.component';
+import { PoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/PoliciesonEmployee.component';
+import { EditPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/updatePoliciesonEmployee.component';
+import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/policyRequestDetail.component';
+import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/addPolicyRequest.component';
+import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetail/updatePolicyRequest.component';
 
 
 
 const routes: Routes = [
+  {path:"home", component:HomeComponent ,canActivate:[authGuard]},
+  {path:"register",component:RegisterComponent},
+  {path:"login-user",component:LoginComponent},
   {path:"login", component:LoginAdminComponent },
+  {path:"active-employee", component:AcctiveAccountComponent},
+  {path:"forgot-password", component:ForgotPasswordAdminComponent},
+  {path:"verify-check-code", component:VerifyCodeForgotAccountComponent},
+  {path:"change-password", component:ChangeForgotPasswordAdminComponent},
   {path:"", component:LoginAdminComponent },
   {path:"admin", component:DashBoardComponent,canActivate: [AuthGuard],children:[
-    {canActivateChild:[RoleGuard],path:"", component:HomeAdminComponent},
+    {path:"", component:HomeAdminComponent},
     {path:"dashboard", component:HomeAdminComponent},
     {path:"addCompany", component:AddCompanyAdminComponent},
     {path:"company", component:CompanyAdminComponent},
@@ -36,6 +59,14 @@ const routes: Routes = [
     {path:"addPolicy",component:AddPolicyAdminComponent},
     {path:"addEmpRegister",component:AddEmpRegisterAdminComponent},
     { path:"empRegister",component:EmpRegisterAdminComponent},
+    { path:"edit-emp",component:EditEmpRegisterAdminComponent},
+    { path:"profile",component:ProfileAdminComponent},
+    {path:"add-policieson-employee", component:AddPoliciesonEmployeeAdminComponent},
+    {path:"policieson-employee", component:PoliciesonEmployeeAdminComponent},
+    {path:"update-policieson-employee", component:EditPoliciesonEmployeeAdminComponent},
+    {path:"policy-request", component:PolicyRequestDetailComponent},
+    {path:"add-policy-request", component:AddPolicyRequestDetailComponent},
+    {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
   ]}
 ];
 

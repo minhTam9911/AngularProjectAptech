@@ -23,8 +23,8 @@ export class    AddHospitalAdminComponent implements OnInit {
 
     ngOnInit(): void {
      this.formAdd =   this.formBuilder.group({
-            hospitalName:["",[Validators.required, Validators.minLength(3),Validators.maxLength(50)]],
-            location:["",[Validators.required, Validators.minLength(3),Validators.maxLength(150)]],
+            hospitalName:["",[Validators.required, Validators.minLength(3),Validators.maxLength(255)]],
+            location:["",[Validators.required, Validators.minLength(3),Validators.maxLength(500)]],
             phoneNo:["",[Validators.required, Validators.minLength(8),Validators.maxLength(20),Validators.pattern("^[0-9]*$")]],
             url:["",[Validators.required, Validators.pattern(/(https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*))/)]]
        })

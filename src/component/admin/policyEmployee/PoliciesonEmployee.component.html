@@ -1,0 +1,95 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Policieson Employee</h6>
+        <h6 class="btn btn-success">
+          <i class="pi pi-plus" style="font-size: 1rem"></i> <a [routerLink]="['/admin/add-policieson-employee']">Add</a>
+        </h6>
+        <select style="    width: 20%;" (change)="onTableSizeChange($event)" class="form-select" aria-label="Default select example">
+          <option *ngFor="let size of tableSizes">
+            {{size}}
+          </option>
+        </select>
+      </div>
+      
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <ng-container *ngIf="policiesonEmployee !=null">
+          <table class="table align-items-center mb-0">
+            <thead>
+              <tr>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Id</th>
+                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emp No</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Policy Id</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Policy Name</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Policy Status</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Policy Amount</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Policy Duration</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emi</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company Id</th>
+                <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Company Name</th>
+                <th class="text-secondary opacity-7"></th>
+              </tr>
+            </thead>
+            <tbody>
+              
+ <tr *ngFor="let i of policiesonEmployee | paginate: 
+      {
+        itemsPerPage :tableSize,
+        currentPage : page,
+        totalItems:count
+      }
+      ">
+                <td class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-success">{{i.id}}</span>
+
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-success">{{i.empNo}}</span>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-success">{{i.policyId}}</span>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <span class="badge badge-sm bg-gradient-success">{{i.policyName}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.policyStatus}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.policyAmount}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.policyDuration}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.emi}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.companyId}}</span>
+                </td>
+                <td class="align-middle text-center">
+                  <span class="badge badge-sm bg-gradient-success">{{i.companyName}}</span>
+                </td>
+                <td class="align-middle">
+                  <button class="btn btn-info" style="margin-right:5px" (click)="update(i.id)"><i class="pi pi-cog"
+                      style="font-size: 1rem"></i> Edit</button>
+                  <button class="btn btn-danger" (click)="delete(i.id)" type="submit" pButton pRipple ><i class="pi pi-trash"
+                      style="font-size: 1rem"></i> Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        
+          <p-toast></p-toast>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <pagination-controls previousLabel="Prev"  nextLabel="Next" 
+  (pageChange)="onTableDataChange($event)"></pagination-controls>
+</div>

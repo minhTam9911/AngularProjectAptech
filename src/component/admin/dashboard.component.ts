@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
     templateUrl: './dashboard.component.html',
 })
-export class DashBoardComponent {
+export class DashBoardComponent  {
   title = 'Health Insurance';
   displayMenu=false;
   displayEmpRegister  = false;
@@ -14,6 +14,7 @@ export class DashBoardComponent {
   constructor(private router: Router,private confirmationService: ConfirmationService, private messageService: MessageService){
     sessionStorage.clear();
   }
+  
   menuDisplay(){
     
   }
@@ -24,7 +25,7 @@ export class DashBoardComponent {
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
           //this.messageService.add({ severity: 'success', summary: 'Confirmed', detail: 'You have accepted' });
-          localStorage.removeItem("token");
+          localStorage.removeItem("role");
           localStorage.removeItem("username");
           this.router.navigate(['/login']);
       },

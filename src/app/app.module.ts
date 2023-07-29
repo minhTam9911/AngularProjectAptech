@@ -19,7 +19,6 @@ import { CompanyAdminComponent } from 'src/component/admin/company/company.compo
 import { EditCompanyAdminComponent } from 'src/component/admin/company/updateCompany.component';
 import { AddPolicyAdminComponent } from 'src/component/admin/polices/addPolicy.component';
 import { EditPolicyAdminComponent } from 'src/component/admin/polices/updatePolicy.component';
-import { Policy } from 'src/model/policy.model';
 import { PolicyAdminComponent } from 'src/component/admin/polices/policy.component';
 import { PolicyService } from 'src/service/admin/policy.service';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -36,6 +35,30 @@ import { AddHospitalAdminComponent } from 'src/component/admin/hospital/addHospi
 import { HospitalAdminComponent } from 'src/component/admin/hospital/hospital.component';
 import { EditHospitalAdminComponent } from 'src/component/admin/hospital/updateHospital.component';
 import { HospitalInforService } from 'src/service/admin/hospitalInfo.service';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { AcctiveAccountComponent } from 'src/component/admin/activeAccount/activeAccount.component';
+import { ForgotPasswordAdminComponent } from 'src/component/employee/forgotPasswordEmp.component';
+import { VerifyCodeForgotAccountComponent } from 'src/component/employee/checkCodeChangePass.component';
+import { ChangeForgotPasswordAdminComponent } from 'src/component/employee/changePasswordEmpRegister.component';
+import { EditEmpRegisterAdminComponent } from 'src/component/admin/empRegister/updateEmpRegister.component';
+import { ProfileAdminComponent } from 'src/component/admin/profile/profileAdmin.component';
+import { AddPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/addPoliciesonEmployee.component';
+import { PoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/PoliciesonEmployee.component';
+import { EditPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/updatePoliciesonEmployee.component';
+import { PoliciesonEmployeeService } from 'src/service/admin/policyEmployee.service';
+import { PasswordModule } from 'primeng/password';
+import { DropdownModule } from 'primeng/dropdown';
+import { PolicyRequestDetailService } from 'src/service/admin/policyRequestDetail.service';
+import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/policyRequestDetail.component';
+import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/addPolicyRequest.component';
+import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetail/updatePolicyRequest.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +76,23 @@ import { HospitalInforService } from 'src/service/admin/hospitalInfo.service';
      LoginAdminComponent,
      AddHospitalAdminComponent,
      HospitalAdminComponent,
-     EditHospitalAdminComponent
+     EditHospitalAdminComponent,
+     LoginComponent,
+     RegisterComponent,
+     HomeComponent,
+     AcctiveAccountComponent,
+     ForgotPasswordAdminComponent,
+     VerifyCodeForgotAccountComponent,
+     ChangeForgotPasswordAdminComponent,
+     EditEmpRegisterAdminComponent,
+     ProfileAdminComponent,
+     AddPoliciesonEmployeeAdminComponent,
+     PoliciesonEmployeeAdminComponent,
+     EditPoliciesonEmployeeAdminComponent,
+     PolicyRequestDetailComponent,
+     AddPolicyRequestDetailComponent,
+     UpdatePolicyRequestDetailsComponent
+     
   ],
   imports: [
     BrowserModule,
@@ -69,10 +108,23 @@ import { HospitalInforService } from 'src/service/admin/hospitalInfo.service';
     InputSwitchModule,
     DialogModule,
     ConfirmDialogModule,
-    
-    
+    InputTextModule,
+    CheckboxModule,
+    RadioButtonModule,
+    PasswordModule,
+    DropdownModule
   ],
-  providers: [MessageService,ConfirmationService,HospitalInforService, CompanyDetailService, BaseUrl, PolicyService, EmpRegisterService, LoginService],
+  providers: [MessageService,
+    ConfirmationService,
+    HospitalInforService, 
+    CompanyDetailService, 
+    BaseUrl, 
+    PolicyService, 
+    EmpRegisterService, 
+    LoginService,
+    PoliciesonEmployeeService,
+    PolicyRequestDetailService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
