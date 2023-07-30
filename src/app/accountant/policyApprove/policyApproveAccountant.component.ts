@@ -18,9 +18,9 @@ import { PolicyRequestDetailService } from "src/service/admin/policyRequestDetai
 import { Result } from "src/service/result.service";
 
 @Component({
-  templateUrl: './policyApprove.component.html',
+  templateUrl: './policyApproveAccountant.component.html',
 })
-export class PolicyApprovalComponent implements OnInit {
+export class PolicyApprovalAccountantComponent implements OnInit {
   result: Result;
   policyRequestDetails: PolicyRequestDetail[];
   policyRequestDetail: PolicyRequestDetail;

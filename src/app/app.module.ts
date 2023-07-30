@@ -68,7 +68,8 @@ import { ProfileEmployeeComponent } from './component-employee/profile/profileEm
 import { HomeEmployeeComponent } from './component-employee/home/home.component';
 import { AddPolicyRequestDetailComponentEmployee } from './component-employee/policyRequestDetaik/addPolicyRequest.component';
 import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
-
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profile/changePassword.component';
 
 
 @NgModule({
@@ -114,7 +115,8 @@ import { ChangeForgotPasswordComponent } from './component-employee/profile/chan
      HomeEmployeeComponent,
      AddPolicyRequestDetailComponentEmployee,
      HomeEmployeeComponent,
-     ChangeForgotPasswordComponent
+     ChangeForgotPasswordComponent,
+     ChangeForgotPasswordProfileComponent
      
    
      
@@ -137,7 +139,8 @@ import { ChangeForgotPasswordComponent } from './component-employee/profile/chan
     CheckboxModule,
     RadioButtonModule,
     PasswordModule,
-    DropdownModule
+    DropdownModule,
+    OverlayPanelModule
   ],
   providers: [MessageService,
     ConfirmationService,

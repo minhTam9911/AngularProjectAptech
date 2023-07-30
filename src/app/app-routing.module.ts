@@ -42,6 +42,7 @@ import { ProfileEmployeeComponent } from './component-employee/profile/profileEm
 import { AuthGuardAdmin } from 'src/service/guard/authGuardAdmin.service';
 import { AuthGuardEmployee } from 'src/service/guard/authGuardEmployeeservice';
 import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
+import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profile/changePassword.component';
 
 
 
@@ -80,10 +81,11 @@ const routes: Routes = [
     {path:"add-policy-request", component:AddPolicyRequestDetailComponent},
     {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
     {path:"policy-approval",component:PolicyApprovalComponent},
+    {path:"change-password",component:ChangeForgotPasswordProfileComponent}
   ]},
   {path:"employee",component:DashBoardForEmployeeComponent,canActivate:[AuthGuardEmployee],children:[
-    {path:"",component:HomeEmployeeComponent},
-    {path:"home",component:HomeEmployeeComponent},
+    {path:"",component:PolicyComponentEmployee},
+    {path:"home",component:PolicyComponentEmployee},
     {path:"policy",component:PolicyComponentEmployee},
     {path:"add-policy-request",component:AddPolicyRequestDetailComponentEmployee},
     {path:"policy-request",component:PolicyRequestDetailForEmpComponent},

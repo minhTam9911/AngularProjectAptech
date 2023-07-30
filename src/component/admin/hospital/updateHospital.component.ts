@@ -51,10 +51,10 @@ export class    EditHospitalAdminComponent implements OnInit {
                 this.result = res as Result;
                 console.log(this.result)
                 if(this.result){
-                    this.messageService.add({severity:"success",summary:"Update Success", detail:"Hospital add successful"})
+                    this.messageService.add({severity:"success",summary:"Update Success", detail:"Hospital Update successful"})
                     }
                     else{
-                        this.messageService.add({severity:"error",summary:"Update Success", detail:"Hospital add fail"})
+                        this.messageService.add({severity:"error",summary:"Update Success", detail:"Hospital Update fail"})
                     }
             },
 

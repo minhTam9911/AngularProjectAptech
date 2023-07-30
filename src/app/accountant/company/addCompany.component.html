@@ -3,10 +3,8 @@
 
     <div class="col-lg-8 card m-5 p-5" style="position: absolute;
                         right: 182px; background-color:rgb(167, 216, 224)">
-        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Update Company Detail</h1>
-        <ng-container *ngIf="company !=null">
+        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Company Detail</h1>
         <form [formGroup]="formAdd" (ngSubmit)="save()">
-            <input type="hidden" readonly formControlName="companyId">
             <div class="form-group input-material">
                 <div *ngIf="formAdd.get('companyName').touched">
                     <span class="text-danger" style="font-size:12px"
@@ -73,10 +71,15 @@
             </div>
             <div class="text-center">
                 <p-toast></p-toast>
-                <button type="submit" pButton pRipple  
+                <button type="submit" pButton  pRipple 
                     class="btn btn-primary" [disabled]="formAdd.invalid">Submit</button>
             </div>
         </form>
-    </ng-container>
+        
+           
+       
+            
+      
+       
     </div>
 </div>

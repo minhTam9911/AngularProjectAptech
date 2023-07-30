@@ -8,6 +8,7 @@ import { Router } from "@angular/router";
 import { Policy } from "src/model/policy.model";
 import { PolicyService } from "src/service/admin/policy.service";
 import { Hospital } from "src/model/hospitalInfo.model";
+import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 
 @Component({
   templateUrl: './policy.component.html'
@@ -22,14 +23,16 @@ export class PolicyComponentEmployee implements OnInit {
   tableSize: number = 10;
   tableSizes: any = [5, 10, 15, 20];
   visible: boolean = false;
-  policy:Policy;
+  policyDetail:Policy;
   hospital:Hospital
   company:CompanyDetail
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
     private policyService: PolicyService,
     private router: Router,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private hospitalService: HospitalInforService,
+    private companyService: CompanyDetailService
   ) { }
 
 
@@ -58,7 +61,16 @@ export class PolicyComponentEmployee implements OnInit {
   async detail(id: any){
     this.visible = true;
     this.policyService.findById(id).then(
-      res=>this.policy = res as Policy,
+      res=>{this.policyDetail = res as Policy;
+            this.hospitalService.findById(this.policyDetail.medicalid).then(
+              res1=>
+              this.hospital = res1 as Hospital
+            )
+            this.companyService.findById(this.policyDetail.companyId).then(
+              res2=>
+              this.company = res2 as CompanyDetail
+            )
+      },
       error=>console.log(error)
     )
   }

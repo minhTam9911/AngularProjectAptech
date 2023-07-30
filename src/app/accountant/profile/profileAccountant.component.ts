@@ -6,9 +6,9 @@ import { EmpRegister } from 'src/model/empRegister.model';
 import { EmpRegisterService } from 'src/service/admin/empRegister.service';
 
 @Component({
-    templateUrl: './profileAdmin.component.html',
+    templateUrl: './profileAccountant.component.html',
 })
-export class ProfileAdminComponent implements OnInit{
+export class ProfileAccountantComponent implements OnInit{
   title = 'Health Insurance';
   displayMenu=false;
   displayEmpRegister  = false;
