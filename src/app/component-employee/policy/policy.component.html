@@ -164,6 +164,16 @@
             </div>
           </div>
           <div class="col-md-6">
+            
+            <div class="form-group">
+              <label id="email-label" for="email">Company Name</label>
+              <input type="email" name="email" id="email" value="{{ policyDetail.companyName }}" class="form-control" readonly>
+            </div>
+          </div>
+        </div>
+  
+        <div class="row">
+          <div class="col-md-6">
             <p-overlayPanel #op2 [style]="{'width': '375px'}">
               <ng-template pTemplate="content">
                   <h4>Hospital Infor</h4>
@@ -193,16 +203,6 @@
                   </div>
               </ng-template>
           </p-overlayPanel>
-            <div class="form-group">
-              <label id="email-label" for="email">Company Name</label>
-              <input type="email" name="email" id="email" value="{{ policyDetail.companyName }}" class="form-control" readonly>
-            </div>
-          </div>
-        </div>
-  
-        <div class="row">
-          <div class="col-md-6">
-            
             <div class="form-group">
               <label id="name-label" for="name">Hospital Id</label>
               <input type="text" name="name" id="name" value="{{ policyDetail.medicalid}}" (click)="op2.toggle($event)" class="form-control" readonly>

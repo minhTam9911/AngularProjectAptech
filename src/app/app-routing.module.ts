@@ -43,6 +43,15 @@ import { AuthGuardAdmin } from 'src/service/guard/authGuardAdmin.service';
 import { AuthGuardEmployee } from 'src/service/guard/authGuardEmployeeservice';
 import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
 import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profile/changePassword.component';
+import { DashBoardAccountantComponent } from './accountant/dashboardAccountant.component';
+import { AuthGuardAccountant } from 'src/service/guard/authGuardAccountant.service';
+import { PolicyApprovalAccountantComponent } from './accountant/policyApprove/policyApproveAccountant.component';
+import { PolicyAccountantComponent } from './accountant/polices/policyAccountant.component';
+import { ProfileAccountantComponent } from './accountant/profile/profileAccountant.component';
+import { CompanyAccountantComponent } from './accountant/company/companyAccountant.component';
+import { HospitalAccountantComponent } from './accountant/hospital/hospitalAccountant.component';
+import { EditEmpRegisterAccountantComponent } from './accountant/empRegister/updateEmpRegisterAccountant.component';
+import { EmpRegisterAccountantComponent } from './accountant/empRegister/empRegisterAccountant.component';
 
 
 
@@ -93,6 +102,21 @@ const routes: Routes = [
     {path:"profile",component:ProfileEmployeeComponent},
     {path:"policieson-employee",component:PoliciesonEmployeeEmployeeComponent},
     {path:"change-password",component:ChangeForgotPasswordComponent}
+  ]},
+
+  {path:"accountant",component:DashBoardAccountantComponent,canActivate:[AuthGuardAccountant],children:[
+    {path:"",component:PolicyApprovalAccountantComponent},
+    {path:"home",component:PolicyApprovalAccountantComponent},
+    {path:"company",component:CompanyAccountantComponent},
+    {path:"hospital",component:HospitalAccountantComponent},
+    {path:"policy",component:PolicyAccountantComponent},
+    {path:"policy-approval",component:PolicyApprovalAccountantComponent},
+    {path:"policy-employee",component:PoliciesonEmployeeAdminComponent},
+    {path:"profile",component:ProfileAccountantComponent},
+    {path:"empRegister",component:EmpRegisterAccountantComponent},
+    {path:"policieson-employee",component:PoliciesonEmployeeAdminComponent},
+    {path:"change-password",component:ChangeForgotPasswordComponent},
+    {path:"edit-emp",component:EditEmpRegisterAccountantComponent},
   ]}
 ];
 

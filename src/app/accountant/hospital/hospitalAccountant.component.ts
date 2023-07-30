@@ -9,11 +9,11 @@ import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 import { Hospital } from "src/model/hospitalInfo.model";
 
 @Component({
-  templateUrl: './hospital.component.html'
+  templateUrl: './hospitalAccountant.component.html'
 })
 
 
-export class HospitalAdminComponent implements OnInit {
+export class HospitalAccountantComponent implements OnInit {
   result: Result
   hospitales: Hospital[];
   formAdd: FormGroup;

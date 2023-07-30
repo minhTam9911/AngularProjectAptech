@@ -13,13 +13,14 @@
             </select>
           </div>
           <div class="col-md-4"><select style="width: 60%;" (change)="selectStatus($event)" class="form-select"
-            aria-label="Default select example">
-            <option value="0" selected>All</option>
-            <option value="1">Wainting For Approval</option>
-            <option value="2">Refuse</option>
-            <option value="3">Already Accepted</option>
-          </select>
-          <label for="textarea-field" id="account_status">Status:</label></div>
+              aria-label="Default select example">
+              <option value="0" selected>All</option>
+              <option value="1">Wainting For Approval</option>
+              <option value="2">Refuse</option>
+              <option value="3">Already Accepted</option>
+            </select>
+            <label for="textarea-field" id="account_status">Status:</label>
+          </div>
           <div class="col-md-4" style="float: right">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
@@ -77,8 +78,8 @@
                       style="margin-right: 5px;"> <i class="pi pi-check"></i>Accepted</button>
                     <button type="button" class="btn btn-secondary" (click)="refuse(i.id)"><i
                         class="pi pi-times"></i>Refused</button><br>
-                    <button type="button" class="btn btn-info" style="margin-right: 5px;"><i
-                        class="pi pi-share-alt"></i>Detail</button>
+                    <button type="button" (click)="detail(i.requestId)" class="btn btn-info"
+                      style="margin-right: 5px;"><i class="pi pi-share-alt"></i>Detail</button>
                     <button type="button" class="btn btn-danger" (click)="delete(i.id)"><i
                         class="pi pi-times"></i>Delete</button>
 
@@ -96,3 +97,236 @@
     (pageChange)="onTableDataChange($event)"></pagination-controls>
 </div>
 <p-toast></p-toast>
+
+<ng-container *ngIf="policyRequestDetail !=null">
+  <div class="card flex justify-content-center">
+    <p-dialog header="Information" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false"
+      [resizable]="false">
+      <div class="form-wrap">
+        <form id="survey-form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label id="name-label" for="name">Request Id</label>
+                <input type="text" name="name" id="name" value="{{ policyRequestDetail.requestId}}" class="form-control"
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label id="email-label" for="email">Request Date</label>
+                <input type="email" name="email" id="email" value="{{ policyRequestDetail.requestDate}}"
+                  class="form-control" readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label id="name-label" for="name">Emp No</label>
+                <input type="text" name="name" id="name" value="{{ policyRequestDetail.empNo }}" class="form-control"
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label id="email-label" for="email">Emp Name</label>
+                <input type="email" name="email" id="email" value="{{ emp.firstName }} {{emp.lastName }}"
+                  class="form-control" readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <p-overlayPanel #op [style]="{'width': '440px'}">
+                <ng-template pTemplate="content">
+                  <h4>Company Detail</h4>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label id="name-label" for="name">Company Name</label>
+                      <input type="text" name="name" id="name" value="{{ company.companyName }}" class="form-control"
+                        readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label id="name-label" for="name">Phone No</label>
+                      <input type="text" name="name" id="name" value="{{ company.phone }}" class="form-control"
+                        readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label id="name-label" for="name">Company Url</label>
+                      <input type="text" name="name" id="name" value="{{ company.companyUrl}}" class="form-control"
+                        readonly>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Address</label>
+                      <textarea id="comments" class="form-control" name="comment"
+                        placeholder="Enter your comment here..." readonly>{{ company.address }}</textarea>
+                    </div>
+                  </div>
+                </ng-template>
+              </p-overlayPanel>
+              <div class="form-group">
+
+                <label id="name-label" for="name">Company Id</label>
+                <input type="text" name="name" id="name" value="{{ policyRequestDetail.companyId }}"
+                  class="form-control" readonly (click)="op.toggle($event)">
+              </div>
+            </div>
+            <div class="col-md-6">
+
+              <div class="form-group">
+                <label id="email-label" for="email">Company Name</label>
+                <input type="email" name="email" id="email" value="{{ policy.companyName }}" class="form-control"
+                  readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <p-overlayPanel #op2 [style]="{'width': '375px'}">
+                <ng-template pTemplate="content">
+                  <h4>Policy Detail</h4>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-group">
+                        <label id="name-label" for="name">Policy Id</label>
+                        <input type="text" name="name" id="name" value="{{ policy.policyId }}" class="form-control"
+                          readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label id="name-label" for="name">Policy Name</label>
+                        <input type="text" name="name" id="name" value="{{ policy.policyName }}" class="form-control"
+                          readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label id="name-label" for="name">Policy Amount</label>
+                        <input type="text" name="name" id="name" value="{{ policy.amount}}" class="form-control"
+                          readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label id="name-label" for="name">Emi</label>
+                        <input type="text" name="name" id="name" value="{{ policy.emi}}" class="form-control" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label id="name-label" for="name">Company Id</label>
+                        <input type="text" name="name" id="name" value="{{ policy.companyId}}"
+                          (click)="op.toggle($event)" class="form-control" readonly>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <p-overlayPanel #op3 [style]="{'width': '375px'}">
+                        <ng-template pTemplate="content">
+                          <h4>Hospital Infor</h4>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label id="name-label" for="name">Hopital Name</label>
+                              <input type="text" name="name" id="name" value="{{ hospital.hospitalName }}"
+                                class="form-control" readonly>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label id="name-label" for="name">Contact No</label>
+                              <input type="text" name="name" id="name" value="{{ hospital.phoneNo }}"
+                                class="form-control" readonly>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label id="name-label" for="name">Url</label>
+                              <input type="text" name="name" id="name" value="{{ hospital.url}}" class="form-control"
+                                readonly>
+                            </div>
+                          </div>
+                          <div class="col-md-12">
+                            <div class="form-group">
+                              <label>Address</label>
+                              <textarea id="comments" class="form-control" name="comment"
+                                placeholder="Enter your comment here..." readonly>{{ hospital.location }}</textarea>
+                            </div>
+                          </div>
+                        </ng-template>
+                      </p-overlayPanel>
+                      <div class="form-group">
+                        <label id="name-label" for="name">Medicalid</label>
+                        <input type="text" name="name" id="name" value="{{ policy.medicalid}}"
+                          (click)="op3.toggle($event)" class="form-control" readonly>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label>Policy description</label>
+                        <textarea id="comments" class="form-control" name="comment"
+                          placeholder="Enter your comment here..." readonly>{{ hospital.location }}</textarea>
+                      </div>
+                    </div>
+                  </div>
+
+                </ng-template>
+              </p-overlayPanel>
+              <div class="form-group">
+                <label id="name-label" for="name">Policy Id</label>
+                <input type="text" name="name" id="name" value="{{ policy.medicalid}}" (click)="op2.toggle($event)"
+                  class="form-control" readonly>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label id="email-label" for="email">Policy Name</label>
+                <input type="email" name="email" id="email" value="{{ hospital.hospitalName }}" class="form-control"
+                  readonly>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label id="email-label" for="email">Policy Amount</label>
+                <input type="email" name="email" id="email" value="{{ policyRequestDetail.policyAmount}}"
+                  class="form-control" readonly>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label id="email-label" for="email">Emi</label>
+                <input type="email" name="email" id="email" value="{{ policyRequestDetail.emi }}" class="form-control"
+                  readonly>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label id="email-label" for="email">Status</label>
+                <input type="email" name="email" id="email" value="{{ policyRequestDetail.status }}"
+                  class="form-control" readonly>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </p-dialog>
+  </div>
+</ng-container>

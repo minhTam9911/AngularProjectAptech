@@ -8,11 +8,11 @@ import { EmpRegisterService } from "src/service/admin/empRegister.service";
 import { LoginService } from "src/service/admin/login.service";
 
 @Component({
-    templateUrl: './changePassword.component.html'
+    templateUrl: './changePasswordAccountant.component.html'
 })
 
 
-export class ChangeForgotPasswordProfileComponent implements OnInit {
+export class ChangeForgotPasswordProfileAccountantComponent implements OnInit {
     formNewPass: FormGroup
     constructor(private router: Router,
             private employeeService: EmpRegisterService,

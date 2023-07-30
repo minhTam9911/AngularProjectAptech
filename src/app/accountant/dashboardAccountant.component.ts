@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ConfirmEventType, ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
-    templateUrl: './dashboard.component.html',
+    templateUrl: './dashboardAccountant.component.html',
 })
 export class DashBoardAccountantComponent  {
   title = 'Health Insurance';

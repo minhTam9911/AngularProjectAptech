@@ -1,0 +1,124 @@
+<style>
+  
+</style>
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Emp Register</h6>
+        <h6 class="btn btn-success">
+          <i class="pi pi-plus" style="font-size: 1rem"></i> <a href="/admin/addEmpRegister">Add</a>
+        </h6>
+        <div class="row">
+          <div class="col-md-4">
+            <select style="width: 20%;" (change)="onTableSizeChange($event)" class="form-select"
+              aria-label="Default select example">
+              <option *ngFor="let size of tableSizes">
+                {{size}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4" style="float: right">
+            <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Enter name...">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <ng-container *ngIf="empRegisteres !=null">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr>
+                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Emp No</th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">First Name
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Last Name
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Username
+                  </th>
+                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Email</th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let emp of empRegisteres | paginate: 
+        {
+          itemsPerPage :tableSize,
+          currentPage : page,
+          totalItems:count
+        }
+        ">
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0" style="margin-left: 40px;">{{emp.empNo}}</p>
+
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{emp.firstName}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{emp.lastName}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{emp.username}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge badge-sm bg-gradient-success">{{emp.email}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <button class="btn btn-warning" style="margin-right:5px" (click)="update(emp.empNo)"><i
+                        class="pi pi-cog" style="font-size: 1rem"></i> Edit</button>
+                    <button class="btn btn-danger" style="margin-right:5px" (click)="delete(emp.empNo)" type="submit"><i
+                        class="pi pi-trash" style="font-size: 1rem"></i> Delete</button>
+                    <button (click)="showModelDialog(emp.empNo)" class="btn btn-info"><i
+                        class="pi pi-external-link"></i> Show</button>
+
+                    <p-dialog header="Information Employee" [(visible)]="displayModal" [modal]="true"
+                      [style]="{width: '35vw',height: '70vw',backgroundColor:'var(--bluegray-100)'}" [draggable]="false" [resizable]="false">
+                      <ng-container *ngIf="emp !=null">
+                        <div class="text-center">
+                          <p class="btn btn-primary">EmpNo: {{emp.empNo}}</p><br>
+                          <p class="btn btn-primary">Designation: {{emp.designation}} </p><br>
+                          <p class="btn btn-primary"><time datetime="dd-MM-yyyy">JoinDate: {{emp.joinDate}}</time></p>
+                          
+                          <br>
+                          <p class="btn btn-primary">Salary: {{emp.salary}}</p><br>
+                          <p class="btn btn-primary">FirstName: {{emp.firstName}}</p><br>
+                          <p class="btn btn-primary">LastName: {{emp.lastName}}</p><br>
+                          <p class="btn btn-primary">Email: {{emp.email}}</p><br>
+                          <p class="btn btn-primary">UserName: {{emp.username}} </p><br>
+                          <p class="btn btn-primary">Address: {{emp.address}}</p><br>
+                          <p class="btn btn-primary">ContactNo: {{emp.contactNo}}</p><br>
+                          <p class="btn btn-primary">State: {{emp.state}}</p><br>
+                          <p class="btn btn-primary">Country: {{emp.country}}</p><br>
+                          <p class="btn btn-primary">City: {{emp.city}}</p><br>
+                          <p class="btn btn-primary">Account Status: {{emp.accountStatus}}</p><br>
+                        </div>
+                      </ng-container>
+
+
+                    </p-dialog>
+
+
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+          </ng-container>
+
+          <p-toast></p-toast>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <pagination-controls previousLabel="Prev" nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"></pagination-controls>
+</div>

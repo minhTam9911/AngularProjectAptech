@@ -7,11 +7,11 @@ import { Result } from "src/service/result.service";
 import { Router } from "@angular/router";
 
 @Component({
-    templateUrl: './company.component.html'
+    templateUrl: './companyAccountant.component.html'
 })
 
 
-export class    CompanyAdminComponent implements OnInit {
+export class    CompanyAccountantComponent implements OnInit {
     result: Result
     companies: CompanyDetail[];
     formAdd: FormGroup;

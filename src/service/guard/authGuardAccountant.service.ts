@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterState
 import { Observable } from "rxjs";
 import { LoginService } from "../admin/login.service";
 
-export const AuthGuardSmallAdmin :  CanActivateFn = (route,state)=>{
+export const AuthGuardAccountant :  CanActivateFn = (route,state)=>{
     const router =inject(Router);
     const service = ɵɵinject(LoginService)
     if(service.isLogin()&&service.getRole()=="Accountant"){

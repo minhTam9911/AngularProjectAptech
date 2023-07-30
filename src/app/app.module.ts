@@ -70,6 +70,17 @@ import { AddPolicyRequestDetailComponentEmployee } from './component-employee/po
 import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profile/changePassword.component';
+import { footerAccountantComponent } from './accountant/footerAccountant.component';
+import { DashBoardAccountantComponent } from './accountant/dashboardAccountant.component';
+import { PolicyAccountantComponent } from './accountant/polices/policyAccountant.component';
+import { PolicyApprovalAccountantComponent } from './accountant/policyApprove/policyApproveAccountant.component';
+import { HospitalAccountantComponent } from './accountant/hospital/hospitalAccountant.component';
+import { CompanyAccountantComponent } from './accountant/company/companyAccountant.component';
+import { ProfileAccountantComponent } from './accountant/profile/profileAccountant.component';
+import { AddEmpRegisterAccountantComponent } from './accountant/empRegister/addEmpRegisterAccountant.component';
+import { EmpRegisterAccountantComponent } from './accountant/empRegister/empRegisterAccountant.component';
+import { EditEmpRegisterAccountantComponent } from './accountant/empRegister/updateEmpRegisterAccountant.component';
+import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/profile/changePasswordAccountant.component';
 
 
 @NgModule({
@@ -116,8 +127,19 @@ import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profil
      AddPolicyRequestDetailComponentEmployee,
      HomeEmployeeComponent,
      ChangeForgotPasswordComponent,
-     ChangeForgotPasswordProfileComponent
-     
+     ChangeForgotPasswordProfileComponent,
+     footerAccountantComponent,
+      DashBoardAccountantComponent,
+      PolicyAccountantComponent,
+      PolicyApprovalAccountantComponent,
+      HospitalAccountantComponent,
+      CompanyAccountantComponent,
+      ProfileAccountantComponent,
+      AddEmpRegisterAccountantComponent,
+      EmpRegisterAccountantComponent,
+      EditEmpRegisterAccountantComponent,
+      ChangeForgotPasswordProfileAccountantComponent
+
    
      
   ],
