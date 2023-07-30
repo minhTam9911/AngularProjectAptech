@@ -29,9 +29,11 @@ import { ProfileAdminComponent } from 'src/component/admin/profile/profileAdmin.
 import { AddPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/addPoliciesonEmployee.component';
 import { PoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/PoliciesonEmployee.component';
 import { EditPoliciesonEmployeeAdminComponent } from 'src/component/admin/policyEmployee/updatePoliciesonEmployee.component';
-import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/policyRequestDetail.component';
-import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/addPolicyRequest.component';
-import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetail/updatePolicyRequest.component';
+import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetaik/policyRequestDetail.component';
+import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetaik/addPolicyRequest.component';
+import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetaik/updatePolicyRequest.component';
+import { PolicyApprovalComponent } from 'src/component/admin/policyApprove/policyApprove.component';
+
 
 
 
@@ -67,6 +69,7 @@ const routes: Routes = [
     {path:"policy-request", component:PolicyRequestDetailComponent},
     {path:"add-policy-request", component:AddPolicyRequestDetailComponent},
     {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
+    {path:"policy-approval",component:PolicyApprovalComponent},
   ]}
 ];
 

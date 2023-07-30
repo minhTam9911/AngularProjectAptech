@@ -24,8 +24,8 @@ export class ChangeForgotPasswordAdminComponent implements OnInit {
     }
     ngOnInit(): void {   
         this.formNewPass=this.formBuilder.group({
-            password: ["", [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]],
-            confirmPassword: ["", [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]],
+            password: ["", [Validators.required, Validators.pattern("^[a-zA-Z0-9_]*$")]],
+            confirmPassword: ["", [Validators.required, Validators.pattern("^[a-zA-Z0-9_]*$")]],
         })  
     }
      save(){

@@ -47,7 +47,7 @@ export class AddPoliciesonEmployeeAdminComponent implements OnInit {
             policyName: [this.policyName, Validators.required],
             policyStatus: [false],
             policyAmount: [this.policyAmount, [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
-            policyDuration: ["", [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
+            policyDuration: ["30", [Validators.required]],
             emi: [this.emi, [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
             companyId: [this.companyId, Validators.required],
             companyName: [this.companyName, Validators.required]
@@ -56,8 +56,8 @@ export class AddPoliciesonEmployeeAdminComponent implements OnInit {
     }
     async save() {
         var policyEmp: PoliciesonEmployee = this.formAdd.value as PoliciesonEmployee
-        // var data = new FormData()
-        // data.append("strPolicyEmp",JSON.stringify(policyEmp))
+        //  var data = new FormData()
+        //  data.append("strPolicyEmp",JSON.stringify(policyEmp))
         await this.policiesonEmpservice.create(policyEmp).then(
             result => {
                 this.result = result as Result

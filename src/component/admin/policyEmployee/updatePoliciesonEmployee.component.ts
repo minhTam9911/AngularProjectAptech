@@ -55,7 +55,7 @@ export class    EditPoliciesonEmployeeAdminComponent implements OnInit {
                     if(this.dataUpdate!=null){
                         console.log(this.dataUpdate)
                     }
-                    this.companyId = this.dataUpdate.companyId
+                    this.companyId = this.dataUpdate.companyId as number
                     this.companyName = this.dataUpdate.companyName.toString()
                     this.policyName = this.dataUpdate.policyName.toString()
                     this.policyAmount = this.dataUpdate.policyAmount
@@ -81,6 +81,7 @@ export class    EditPoliciesonEmployeeAdminComponent implements OnInit {
     async save(){
         var policiesonEmployee: PoliciesonEmployee = this.formAdd.value as PoliciesonEmployee
         console.log(policiesonEmployee)
+        
        await this.policiesonEmpservice.update(policiesonEmployee).then(
             res => {
                 console.log(res)

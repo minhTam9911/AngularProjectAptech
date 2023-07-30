@@ -96,8 +96,7 @@ label#account_status {
                             *ngIf="formAdd.hasError('required',['password'])">Password
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
-                            *ngIf="formAdd.hasError('pattern',['password'])">Password Invalid. Minimum eight characters, at
-                            least one uppercase letter, one lowercase letter, one number and one special character.</span>
+                            *ngIf="formAdd.hasError('pattern',['password'])">Password must be uppercase, lowercase and number..</span>
                     </div>
                     <input id="password" type="password" class="form-control" formControlName="password">
                     <label>Password</label>

@@ -20,13 +20,14 @@ export class PolicyRequestDetailService {
     async create(policyRequestDetail: FormData){
         return await lastValueFrom(this.http.post(this.baseUrl + "policy-request/create", policyRequestDetail));
     }
-    async delete(id: number){
+    async delete(id: Number){
         return await lastValueFrom(this.http.delete(this.baseUrl + "policy-request/delete/"+ id));
     }
     async update(policyRequestDetail: FormData){
         return await lastValueFrom(this.http.put(this.baseUrl + "policy-request/update", policyRequestDetail));
     }
-    async findById(id: number){
+    async findById(id: Number){
         return await lastValueFrom(this.http.get(this.baseUrl + "policy-request/find/"+id));
     }
+   
 }

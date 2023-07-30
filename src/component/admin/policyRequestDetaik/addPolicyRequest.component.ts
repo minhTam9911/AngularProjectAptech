@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MessageService } from "primeng/api";
 import { EmpRegister } from "src/model/empRegister.model";
 import { Policy } from "src/model/policy.model";
+import { PolicyApprovalDetail } from "src/model/policyApprovalDetail.model";
 import { PolicyRequestDetail } from "src/model/policyRequestDetail.model";
 import { EmpRegisterService } from "src/service/admin/empRegister.service";
 import { PolicyService } from "src/service/admin/policy.service";
+import { PolicyApprovalDetailService } from "src/service/admin/policyApprovalDetail.service";
 import { PolicyRequestDetailService } from "src/service/admin/policyRequestDetail.service";
 
 @Component({
@@ -29,7 +31,8 @@ export class AddPolicyRequestDetailComponent implements OnInit {
     private messageService: MessageService,
     private policyRequestDetailService: PolicyRequestDetailService,
     private policyService: PolicyService,
-    private empRegistersService: EmpRegisterService
+    private empRegistersService: EmpRegisterService,
+    private policyApprovalService: PolicyApprovalDetailService
   ) { }
 
   ngOnInit(): void {
@@ -60,17 +63,48 @@ export class AddPolicyRequestDetailComponent implements OnInit {
   async save() {
     var policyRequestDetailSave: PolicyRequestDetail = this.formAdd
       .value as PolicyRequestDetail;
+    var policyApproval = new PolicyApprovalDetail();
+      policyApproval.policyId = policyRequestDetailSave.policyId;
+      policyApproval.requestId = policyRequestDetailSave.requestId;
+      policyApproval.date = policyRequestDetailSave.requestDate;
+      policyApproval.amount = policyRequestDetailSave.policyAmount;
+      policyApproval.status = policyRequestDetailSave.status;
+     
     console.log(policyRequestDetailSave);
-    var data = new FormData();
-    data.append(
+    var data1 = new FormData();
+    var data2 = new FormData();
+    data1.append(
       'strPolicyRequest',
       JSON.stringify(policyRequestDetailSave)
     );
-    console.log(data);
-    await this.policyRequestDetailService.create(data).then(
+   
+    console.log(data1);
+    await this.policyRequestDetailService.create(data1).then(
       (result) => {
-        this.result = result as boolean;
-        if (this.result) {
+        policyRequestDetailSave.requestId = result as Number;
+        policyApproval.requestId = policyRequestDetailSave.requestId;
+        if (policyRequestDetailSave.requestId!=0) {
+         
+          data2.append("strPolicyApproval",JSON.stringify(policyApproval))
+           this.policyApprovalService.create(data2).then(
+            (result) => {
+              this.result = result as boolean;
+              if (this.result) {
+                this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: ' Policy Approval Detail Add successful',
+                });
+              } else {
+                this.messageService.add({
+                  severity: 'error',
+                  summary: 'Fail',
+                  detail: 'Add Policy Approval Detail Fail',
+                });
+              }
+            },
+            (err) => console.log(err)
+          );
           this.messageService.add({
             severity: 'success',
             summary: 'Successful',
@@ -86,6 +120,8 @@ export class AddPolicyRequestDetailComponent implements OnInit {
       },
       (err) => console.log(err)
     );
+
+    
   }
   async selectedPolicy(evn: any) {
     var policyId = parseInt(evn.target.value);

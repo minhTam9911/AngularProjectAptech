@@ -65,8 +65,6 @@ import { PolicyRequestDetailService } from "src/service/admin/policyRequestDetai
                   requestDate: [this.policyRequestDetail.requestDate,[Validators.required] ],
                   empNo: [this.policyRequestDetail.empNo, [Validators.required]],
                   status: [this.policyRequestDetail.status],
-            
-               
                   //Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")]
                 });
   

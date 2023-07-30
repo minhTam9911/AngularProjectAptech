@@ -20,6 +20,10 @@
             float: left;
             margin-top: 3px;
         }
+        select[readonly]
+{
+    pointer-events: none;
+}
     </style>
     <div class="col-lg-8 card m-5 p-5" style="position: absolute;
                         right: 182px; background-color:rgb(167, 216, 224)">
@@ -94,7 +98,7 @@
                         <label>Request Date</label>
                     </div>
                     <div class="col-md-4" style="font-size: left;">
-                        <select class="form-select" formControlName="status" aria-readonly="">
+                        <select class="form-select" formControlName="status"readonly>
                                 <option value="Waiting for approval">Waiting For Approval</option>
                                 <option value="Already accepted">Already accepted</option>
                                 <option value="Refuse">Refuse</option>

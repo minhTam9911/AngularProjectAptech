@@ -54,9 +54,12 @@ import { PoliciesonEmployeeService } from 'src/service/admin/policyEmployee.serv
 import { PasswordModule } from 'primeng/password';
 import { DropdownModule } from 'primeng/dropdown';
 import { PolicyRequestDetailService } from 'src/service/admin/policyRequestDetail.service';
-import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/policyRequestDetail.component';
-import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetail/addPolicyRequest.component';
-import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetail/updatePolicyRequest.component';
+import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetaik/policyRequestDetail.component';
+import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetaik/addPolicyRequest.component';
+import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetaik/updatePolicyRequest.component';
+import { PolicyApprovalComponent } from 'src/component/admin/policyApprove/policyApprove.component';
+import { PolicyApprovalDetailService } from 'src/service/admin/policyApprovalDetail.service';
+
 
 
 @NgModule({
@@ -91,7 +94,10 @@ import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyR
      EditPoliciesonEmployeeAdminComponent,
      PolicyRequestDetailComponent,
      AddPolicyRequestDetailComponent,
-     UpdatePolicyRequestDetailsComponent
+     UpdatePolicyRequestDetailsComponent,
+     PolicyApprovalComponent
+     
+   
      
   ],
   imports: [
@@ -123,7 +129,8 @@ import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyR
     EmpRegisterService, 
     LoginService,
     PoliciesonEmployeeService,
-    PolicyRequestDetailService
+    PolicyRequestDetailService,
+    PolicyApprovalDetailService
   ],
   bootstrap: [AppComponent]
 })

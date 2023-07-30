@@ -25,6 +25,10 @@ async create(policiesonEmployee: PoliciesonEmployee){
     return await lastValueFrom(this.http.post(this.baseUrl + "policy-employee/create", policiesonEmployee));
 }
 
+async create2(policiesonEmployee: FormData){
+    return await lastValueFrom(this.http.post(this.baseUrl + "policy-employee/create2", policiesonEmployee));
+}
+
 async delete(id: number){
     return await lastValueFrom(this.http.delete(this.baseUrl + "policy-employee/delete/"+ id));
 }

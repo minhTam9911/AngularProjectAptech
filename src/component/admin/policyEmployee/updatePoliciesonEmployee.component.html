@@ -73,11 +73,11 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <!-- <div *ngIf="formAdd.get('empNo').touched">
+                        <div *ngIf="formAdd.get('empNo').touched">
                             <span class="text-danger" style="font-size:12px"
                                 *ngIf="formAdd.hasError('required',['empNo'])">empNo
                                 shouldn't be empty</span>
-                        </div> -->
+                        </div>
                         <select class="form-select" formControlName="empNo">
                             <ng-container *ngFor="let i of emp">
                                 <option value="{{i.empNo}}">{{i.empNo}} - {{i.firstName + i.lastName}}</option>

@@ -13,6 +13,10 @@ import { Result } from "src/service/result.service";
     result: Result;
     policyRequestDetails: PolicyRequestDetail[];
     formAdd: FormGroup;
+    page: number = 1;
+    count: number = 0;
+    tableSize: number = 10;
+    tableSizes: any = [5, 10, 15, 20];
     constructor(
       private formBuilder: FormBuilder,
       private messageService: MessageService,
@@ -21,15 +25,16 @@ import { Result } from "src/service/result.service";
     ) {}
   
     ngOnInit(): void {
-      this.policyRequestDetailService.findAll().then(
-        (res) => {
-          this.policyRequestDetails = res as PolicyRequestDetail[];
-          console.log(this.policyRequestDetails);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+     this.getAll()
+    }
+    onTableSizeChange(evt: any) {
+      this.tableSize = evt.target.value;
+      this.page = 1;
+      this.getAll();
+    }
+    onTableDataChange(evt: any) {
+      this.page = evt;
+      this.getAll();
     }
     getAll(){
       this.policyRequestDetailService.findAll().then(

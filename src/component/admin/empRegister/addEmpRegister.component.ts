@@ -42,7 +42,7 @@ export class AddEmpRegisterAdminComponent implements OnInit {
       firstName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       lastName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       userName: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(255), Validators.pattern("^[a-zA-Z0-9_]{5,255}$")]],
-      password: ["", [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]],
+      password: ["", [Validators.required, Validators.pattern("^[a-zA-Z0-9_]*$")]],
       //Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")]
       address:["",[Validators.required, Validators.minLength(5),Validators.maxLength(150)]],
       contactNo:["",[Validators.required, Validators.minLength(5),Validators.maxLength(50)]],

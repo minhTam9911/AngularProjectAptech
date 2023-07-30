@@ -1,12 +1,12 @@
 export class PoliciesonEmployee{
             id :Number;
             empNo :Number;
-            policyId :number;
+            policyId :Number;
             policyName :String;
             policyStatus:boolean;
             policyAmount :Number;
             policyDuration :number;
             emi :Number;
-            companyId :number;
+            companyId :Number;
             companyName :String;
 }

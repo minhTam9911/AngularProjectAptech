@@ -1,7 +1,7 @@
 export class PolicyRequestDetail{
     requestId :Number;
     requestDate:String;
-    empNo: number;
+    empNo: Number;
     policyId : Number;
     policyName:String;
     policyAmount :Number;

@@ -38,7 +38,7 @@
                                 *ngIf="formAdd.hasError('required',['policyId'])">Policy Id
                                 shouldn't be empty</span>
                         </div>
-                        <select class="form-select" formControlName="policyId" (change)="selectedPolicy($event)">
+                        <select class="form-select" formControlName="policyId" (change)="selectedPolicy($event)" readonly>
                             <ng-container *ngFor="let i of policy">
                                 <option value="{{i.policyId}}">{{i.policyId}} - {{i.policyName}}</option>
                             </ng-container>
@@ -81,7 +81,7 @@
                                 *ngIf="formAdd.hasError('required',['empNo'])">empNo
                                 shouldn't be empty</span>
                         </div>
-                        <select class="form-select" formControlName="empNo">
+                        <select class="form-select" formControlName="empNo" readonly>
                             <ng-container *ngFor="let i of emp">
                                 <option value="{{i.empNo}}">{{i.empNo}} - {{i.firstName + i.lastName}}</option>
                             </ng-container>
