@@ -29,5 +29,8 @@ export class PolicyRequestDetailService {
     async findById(id: Number){
         return await lastValueFrom(this.http.get(this.baseUrl + "policy-request/find/"+id));
     }
+    async findByColEmpNo(id: Number){
+        return await lastValueFrom(this.http.get(this.baseUrl + "policy-request/find-emp-no/"+id));
+    }
    
 }

@@ -38,19 +38,19 @@ export class EditEmpRegisterAdminComponent implements OnInit {
                 console.log(this.emp)
                 this.formAdd = this.formBuilder.group({
                      empNo: this.emp.empNo,
-                    designation: [this.emp.designation, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+                    designation: [this.emp.designation, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
                     joinDate: [this.emp.joinDate, Validators.required],
                     salary: [this.emp.salary, [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
-                    firstName: [this.emp.firstName, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-                    lastName: [this.emp.lastName, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+                    firstName: [this.emp.firstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                    lastName: [this.emp.lastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
                     userName: [this.emp.username, [Validators.required, Validators.minLength(5), Validators.maxLength(255), Validators.pattern("^[a-zA-Z0-9_]{5,255}$")]],
                     password: [this.emp.password, [Validators.required, Validators.pattern("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$")]],
                     //Validators.pattern("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$")]
-                    address: [this.emp.address, [Validators.required, Validators.minLength(5), Validators.maxLength(150)]],
+                    address: [this.emp.address, [Validators.required, Validators.minLength(2), Validators.maxLength(150)]],
                     contactNo: [this.emp.contactNo, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-                    state: [this.emp.state, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-                    country: [this.emp.country, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-                    city: [this.emp.city, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+                    state: [this.emp.state, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                    country: [this.emp.country, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+                    city: [this.emp.city, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
                     accountStatus: [this.emp.accountStatus, [Validators.required]],
                     email: [this.emp.email, [Validators.required, Validators.pattern("[a-z0-9]+@[a-z]+\.[a-z]{2,3}")]],
         

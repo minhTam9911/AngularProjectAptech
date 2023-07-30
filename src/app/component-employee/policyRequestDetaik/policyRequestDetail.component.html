@@ -4,7 +4,7 @@
       <div class="card-header pb-0">
         <h6>Policy Request</h6>
         <h6 class="btn btn-success">
-          <i class="pi pi-plus" style="font-size: 1rem"></i> <a [routerLink]="['/admin/add-policy-request']">Add</a>
+          <i class="pi pi-plus" style="font-size: 1rem"></i> <a [routerLink]="['/employee/add-policy-request']">Add</a>
         </h6>
         <div class="row">
           <div class="col-md-4">
@@ -94,10 +94,8 @@
                   </td>
                   <td class="align-middle">
                     <button class="btn btn-info" style="margin-right:5px"
-                      (click)="update(policyRequestDetail.requestId)"><i class="pi pi-cog" style="font-size: 1rem"></i>
-                      Edit</button>
-                    <button class="btn btn-danger" (click)="delete(policyRequestDetail.requestId)" type="submit" pButton
-                      pRipple><i class="pi pi-trash" style="font-size: 1rem"></i> Delete</button>
+                      (click)="cancelRequest(policyRequestDetail.requestId)"><i class="pi pi-cog" style="font-size: 1rem"></i>
+                      Cancel Request</button>
                   </td>
                 </tr>
               </tbody>

@@ -32,7 +32,7 @@ label#account_status {
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('minlength',['firstName'])">First Name
-                            shouldn't be under 5 char</span>
+                            shouldn't be under 2 char</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('maxlength',['firstName'])">First Name
                             shouldn't be over 50 char</span>
@@ -47,7 +47,7 @@ label#account_status {
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('minlength',['lastName'])">Last Name
-                            shouldn't be under 5 char</span>
+                            shouldn't be under 2 char</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('maxlength',['lastName'])">Last Name
                             shouldn't be over 50 char</span>
@@ -110,7 +110,7 @@ label#account_status {
                         shouldn't be empty</span>
                     <span class="text-danger" style="font-size:12px"
                         *ngIf="formAdd.hasError('minlength',['address'])">Address
-                        shouldn't be under 5 char</span>
+                        shouldn't be under 2 char</span>
                     <span class="text-danger" style="font-size:12px"
                         *ngIf="formAdd.hasError('maxlength',['address'])">Address
                         shouldn't be over 150 char</span>
@@ -129,7 +129,7 @@ label#account_status {
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('minlength',['state'])">State
-                            shouldn't be under 5 char</span>
+                            shouldn't be under 2 char</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('maxlength',['state'])">State
                             shouldn't be over 50 char</span>
@@ -145,7 +145,7 @@ label#account_status {
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('minlength',['country'])">country
-                            shouldn't be under 5 char</span>
+                            shouldn't be under 2 char</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('maxlength',['country'])">country
                             shouldn't be over 50 char</span>
@@ -161,7 +161,7 @@ label#account_status {
                             shouldn't be empty</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('minlength',['city'])">City
-                            shouldn't be under 5 char</span>
+                            shouldn't be under 2 char</span>
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('maxlength',['city'])">City
                             shouldn't be over 50 char</span>
@@ -192,14 +192,11 @@ label#account_status {
                         <span class="text-danger" style="font-size:12px"
                             *ngIf="formAdd.hasError('required',['designation'])">Designation
                             shouldn't be empty</span>
-                        <span class="text-danger" style="font-size:12px"
-                            *ngIf="formAdd.hasError('minlength',['designation'])">Designation
-                            shouldn't be under 5 char</span>
-                        <span class="text-danger" style="font-size:12px"
-                            *ngIf="formAdd.hasError('maxlength',['designation'])">Designation
-                            shouldn't be over 50 char</span>
                     </div>
-                    <input type="text" class="form-control" formControlName="designation">
+                    <select class="form-select" formControlName="designation" aria-label="Default select example">
+                        <option value="Accountant">Accountant</option>
+                        <option value="Employee" selected>Employee</option>
+                      </select>
                     <label>Designation</label>
                 </div>
             </div>

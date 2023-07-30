@@ -59,6 +59,15 @@ import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyReque
 import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetaik/updatePolicyRequest.component';
 import { PolicyApprovalComponent } from 'src/component/admin/policyApprove/policyApprove.component';
 import { PolicyApprovalDetailService } from 'src/service/admin/policyApprovalDetail.service';
+import { DashBoardForEmployeeComponent } from './component-employee/dashboard.component';
+import { FooterForEmployeeComponent } from './component-employee/footer.component';
+import { PolicyComponentEmployee } from './component-employee/policy/policy.component';
+import { PoliciesonEmployeeEmployeeComponent } from './component-employee/policyEmployee/PoliciesonEmployee.component';
+import { PolicyRequestDetailForEmpComponent } from './component-employee/policyRequestDetaik/policyRequestDetail.component';
+import { ProfileEmployeeComponent } from './component-employee/profile/profileEmployee.component';
+import { HomeEmployeeComponent } from './component-employee/home/home.component';
+import { AddPolicyRequestDetailComponentEmployee } from './component-employee/policyRequestDetaik/addPolicyRequest.component';
+import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
 
 
 
@@ -95,7 +104,17 @@ import { PolicyApprovalDetailService } from 'src/service/admin/policyApprovalDet
      PolicyRequestDetailComponent,
      AddPolicyRequestDetailComponent,
      UpdatePolicyRequestDetailsComponent,
-     PolicyApprovalComponent
+     PolicyApprovalComponent,
+     DashBoardForEmployeeComponent,
+     FooterForEmployeeComponent,
+     PolicyComponentEmployee,
+     PoliciesonEmployeeEmployeeComponent,
+     PolicyRequestDetailForEmpComponent,
+     ProfileEmployeeComponent,
+     HomeEmployeeComponent,
+     AddPolicyRequestDetailComponentEmployee,
+     HomeEmployeeComponent,
+     ChangeForgotPasswordComponent
      
    
      

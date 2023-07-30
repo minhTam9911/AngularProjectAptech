@@ -14,7 +14,6 @@ import { LoginAdminComponent } from 'src/component/admin/login/login.component';
 import { AddPolicyAdminComponent } from 'src/component/admin/polices/addPolicy.component';
 import { PolicyAdminComponent } from 'src/component/admin/polices/policy.component';
 import { EditPolicyAdminComponent } from 'src/component/admin/polices/updatePolicy.component';
-import { AuthGuard } from 'src/service/guard/authGuard.serve';
 import { RoleGuard } from 'src/service/guard/roleGuard.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -33,21 +32,32 @@ import { PolicyRequestDetailComponent } from 'src/component/admin/policyRequestD
 import { AddPolicyRequestDetailComponent } from 'src/component/admin/policyRequestDetaik/addPolicyRequest.component';
 import { UpdatePolicyRequestDetailsComponent } from 'src/component/admin/policyRequestDetaik/updatePolicyRequest.component';
 import { PolicyApprovalComponent } from 'src/component/admin/policyApprove/policyApprove.component';
+import { DashBoardForEmployeeComponent } from './component-employee/dashboard.component';
+import { HomeEmployeeComponent } from './component-employee/home/home.component';
+import { PolicyComponentEmployee } from './component-employee/policy/policy.component';
+import { AddPolicyRequestDetailComponentEmployee } from './component-employee/policyRequestDetaik/addPolicyRequest.component';
+import { PolicyRequestDetailForEmpComponent } from './component-employee/policyRequestDetaik/policyRequestDetail.component';
+import { PoliciesonEmployeeEmployeeComponent } from './component-employee/policyEmployee/PoliciesonEmployee.component';
+import { ProfileEmployeeComponent } from './component-employee/profile/profileEmployee.component';
+import { AuthGuardAdmin } from 'src/service/guard/authGuardAdmin.service';
+import { AuthGuardEmployee } from 'src/service/guard/authGuardEmployeeservice';
+import { ChangeForgotPasswordComponent } from './component-employee/profile/changePassword.component';
+
 
 
 
 
 const routes: Routes = [
-  {path:"home", component:HomeComponent ,canActivate:[authGuard]},
-  {path:"register",component:RegisterComponent},
-  {path:"login-user",component:LoginComponent},
+  // {path:"home", component:HomeComponent },
+  // {path:"register",component:RegisterComponent},
+  // {path:"login-user",component:LoginComponent},
   {path:"login", component:LoginAdminComponent },
   {path:"active-employee", component:AcctiveAccountComponent},
   {path:"forgot-password", component:ForgotPasswordAdminComponent},
   {path:"verify-check-code", component:VerifyCodeForgotAccountComponent},
   {path:"change-password", component:ChangeForgotPasswordAdminComponent},
   {path:"", component:LoginAdminComponent },
-  {path:"admin", component:DashBoardComponent,canActivate: [AuthGuard],children:[
+  {path:"admin", component:DashBoardComponent,canActivate:[AuthGuardAdmin],children:[
     {path:"", component:HomeAdminComponent},
     {path:"dashboard", component:HomeAdminComponent},
     {path:"addCompany", component:AddCompanyAdminComponent},
@@ -60,9 +70,9 @@ const routes: Routes = [
     {path:"update-policy", component:EditPolicyAdminComponent},
     {path:"addPolicy",component:AddPolicyAdminComponent},
     {path:"addEmpRegister",component:AddEmpRegisterAdminComponent},
-    { path:"empRegister",component:EmpRegisterAdminComponent},
-    { path:"edit-emp",component:EditEmpRegisterAdminComponent},
-    { path:"profile",component:ProfileAdminComponent},
+    {path:"empRegister",component:EmpRegisterAdminComponent},
+    {path:"edit-emp",component:EditEmpRegisterAdminComponent},
+    {path:"profile",component:ProfileAdminComponent},
     {path:"add-policieson-employee", component:AddPoliciesonEmployeeAdminComponent},
     {path:"policieson-employee", component:PoliciesonEmployeeAdminComponent},
     {path:"update-policieson-employee", component:EditPoliciesonEmployeeAdminComponent},
@@ -70,6 +80,17 @@ const routes: Routes = [
     {path:"add-policy-request", component:AddPolicyRequestDetailComponent},
     {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
     {path:"policy-approval",component:PolicyApprovalComponent},
+  ]},
+  {path:"employee",component:DashBoardForEmployeeComponent,canActivate:[AuthGuardEmployee],children:[
+    {path:"",component:HomeEmployeeComponent},
+    {path:"home",component:HomeEmployeeComponent},
+    {path:"policy",component:PolicyComponentEmployee},
+    {path:"add-policy-request",component:AddPolicyRequestDetailComponentEmployee},
+    {path:"policy-request",component:PolicyRequestDetailForEmpComponent},
+    {path:"policy-employee",component:PoliciesonEmployeeEmployeeComponent},
+    {path:"profile",component:ProfileEmployeeComponent},
+    {path:"policieson-employee",component:PoliciesonEmployeeEmployeeComponent},
+    {path:"change-password",component:ChangeForgotPasswordComponent}
   ]}
 ];
 

@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card mb-4">
+      <div class="card-header pb-0">
+        <h6>Policy</h6>
+        <div class="row">
+          <div class="col-md-4">
+            <select style="width: 20%;" (change)="onTableSizeChange($event)" class="form-select"
+              aria-label="Default select example">
+              <option *ngFor="let size of tableSizes">
+                {{size}}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-4"></div>
+          <div class="col-md-4" style="float: right">
+            <div class="input-group">
+              <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" placeholder="Enter name...">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-body px-0 pt-0 pb-2">
+        <div class="table-responsive p-0">
+          <ng-container *ngIf="policies !=null">
+            <table class="table align-items-center mb-0">
+              <thead>
+                <tr> 
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Policy ID 
+                  </th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder ">Policy
+                    Name
+                  </th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Policy
+                    Description</th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Amount
+                  </th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Emi</th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Company Id
+                  </th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Company
+                    Name</th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Medicalid
+                  </th>
+                  <th class="text-secondary opacity-7"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let policy of policies | paginate: 
+              {
+                itemsPerPage :tableSize,
+                currentPage : page,
+                totalItems:count
+              }">
+
+                  <td>
+                    <p class="text-xs font-weight-bold mb-0" style="margin-left: 40px;">{{policy.policyId}}</p>
+
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.policyName}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.policyDesc}}</span>
+                  </td>
+                  <td class="align-middle text-center text-sm">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.amount}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.emi}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.companyId}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.companyName}}</span>
+                  </td>
+                  <td class="align-middle text-center">
+                    <span class="badge badge-sm bg-gradient-success">{{policy.medicalid}}</span>
+                  </td>
+                  <td class="align-middle">
+                    <button class="btn btn-info" style="margin-right:5px" (click)="detail(policy.policyId)"><i
+                        class="pi pi-cog" style="font-size: 1rem"></i> Detail</button>
+
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </ng-container>
+          <p-toast></p-toast>
+        </div>
+      </div>
+    </div>
+  </div>
+  <pagination-controls previousLabel="Prev" nextLabel="Next"
+    (pageChange)="onTableDataChange($event)"></pagination-controls>
+</div>
+
+<div class="card flex justify-content-center">
+  <p-dialog header="Information" [(visible)]="visible" [modal]="true" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+      <table>
+        <tr>
+          <td>Policy Id</td>
+          <td><input type="text" value="{{policy.policyId}}" class="form-control" readonly></td>
+        </tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>
+        <tr></tr>  
+      </table>
+  </p-dialog>
+</div>

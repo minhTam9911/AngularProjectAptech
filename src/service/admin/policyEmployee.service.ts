@@ -38,4 +38,8 @@ async update(policiesonEmployee: PoliciesonEmployee){
 async findById(id: number){
     return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/find/"+id));
 }
+
+async findByColEmpNo(id: number){
+    return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/find-col-empno/"+id));
+}
 }

@@ -23,6 +23,9 @@ export class PolicyApprovalDetailService {
     async delete(id: number) {
         return await lastValueFrom(this.http.delete(this.baseUrl + "policy-approval/delete/" + id));
     }
+    async deleteColRequestId(id: number) {
+        return await lastValueFrom(this.http.delete(this.baseUrl + "policy-approval/delete-col-request/" + id));
+    }
     async update(policyApprovalDetail: FormData) {
         return await lastValueFrom(this.http.put(this.baseUrl + "policy-approval/update", policyApprovalDetail));
     }

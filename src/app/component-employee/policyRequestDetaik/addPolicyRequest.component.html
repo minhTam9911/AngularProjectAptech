@@ -1,0 +1,113 @@
+<link href="/assets/admin/css/companyDetailsStyle.css" rel="stylesheet" type="text/scss">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css" />
+
+<div class="container">
+    <style>
+        .margin-bottom {
+            margin-bottom: -12px;
+        }
+
+        span.p-inputswitch-slider {
+            margin-bottom: -15px;
+        }
+
+        .p-inputswitch.p-component {
+            margin-bottom: -8px;
+        }
+
+        label#account_status {
+            float: left;
+            margin-top: 3px;
+        }
+        select[readonly]
+{
+    pointer-events: none;
+}
+    </style>
+    <div class="col-lg-8 card m-5 p-5" style="position: absolute;
+                        right: 182px; background-color:rgb(167, 216, 224)">
+        <h1 style="text-align:center; font-size:28px; padding-bottom:10px">Add Policy Request</h1>
+        <ng-container *ngIf="policy !=null && emp !=null">
+            <form [formGroup]="formAdd" (ngSubmit)="save()">
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div *ngIf="formAdd.get('policyId').touched">
+                            <span class="text-danger" style="font-size:12px"
+                                *ngIf="formAdd.hasError('required',['policyId'])">Policy Id
+                                shouldn't be empty</span>
+                        </div>
+                        <select class="form-select" formControlName="policyId" (change)="selectedPolicy($event)">
+                            <ng-container *ngFor="let i of policy">
+                                <option value="{{i.policyId}}">{{i.policyId}} - {{i.policyName}}</option>
+                            </ng-container>
+                        </select>
+                        <label>Policy Id</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" readonly formControlName="policyName"
+                            [(ngModel)]="policyName">
+                        <label>Policy Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" readonly formControlName="companyId"
+                            [(ngModel)]="companyId">
+                        <label>Company Id</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" readonly formControlName="companyName"
+                            [(ngModel)]="companyName">
+                        <label>Company Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" readonly formControlName="policyAmount"
+                            [(ngModel)]="policyAmount">
+                        <label>Policy Amount</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input class="form-control" type="text" readonly formControlName="emi" [(ngModel)]="emi">
+                        <label>Emi</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" formControlName="empNo" readonly>
+                        <label>Emp No</label>
+                    </div>
+                    <div class="col-md-4">
+                        <div *ngIf="formAdd.get('requestDate').touched">
+                            <span class="text-danger" style="font-size:12px"
+                                *ngIf="formAdd.hasError('required',['requestDate'])">empNo
+                                shouldn't be empty</span>
+                        </div>
+                        <p-calendar  formControlName="requestDate" dateFormat="dd-mm-yy" dataType="string"></p-calendar>
+                        <label>Request Date</label>
+                    </div>
+                    <div class="col-md-4" style="font-size: left;">
+                        <select class="form-select" formControlName="status"readonly>
+                                <option value="Waiting for approval">Waiting For Approval</option>
+                                <option value="Already accepted">Already accepted</option>
+                                <option value="Refuse">Refuse</option>
+                        </select>
+                        <label for="textarea-field" id="account_status">Status :</label>
+                    </div>
+
+                </div>
+                <div class="text-center">
+                    <p-toast></p-toast>
+                    <button type="submit" pButton pRipple class="btn btn-primary"
+                        [disabled]="formAdd.invalid">Submit</button>
+                </div>
+            </form>
+
+
+        </ng-container>
+
+    </div>
+</div>
+<p-toast></p-toast>

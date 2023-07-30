@@ -40,9 +40,16 @@ export class LoginAdminComponent implements OnInit {
                 console.log(this.responseData)
                 if(this.responseData != null){
                      if(this.responseData['status']){
+                        localStorage.setItem("id",this.responseData['id'])
                          localStorage.setItem('username', this.responseData['username'])
                          localStorage.setItem('role', this.responseData['role'])
-                        this.router.navigate(['/admin'])
+                         if(this.loginService.getRole()=="Admin"){
+                            this.router.navigate(['/admin'])
+                         }else if(this.loginService.getRole()=="Accountant"){
+                            this.router.navigate(['/accountant'])
+                         }else{
+                            this.router.navigate(['/employee'])
+                         }
                      }else{
                         //this.router.navigate(['/login-user'])
                          this.router.navigate(['/active-employee',{id:this.responseData['id']}])

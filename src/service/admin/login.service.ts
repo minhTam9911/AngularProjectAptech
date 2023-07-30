@@ -39,11 +39,10 @@ export class LoginService {
    async changePassword(id: string, newPass: string) {
       return await lastValueFrom(this.http.get(this.baseUrl + "empRegister/change-forgot-pass/" + id + "/" + newPass));
    }
-
-
-   getRoleByToken(token: any) {
-      let _token = token.split(".")[1];
-      this.tokenResp = JSON.parse(atob(_token));
-      console.log(this.tokenResp)
+   isLogin(){
+      return localStorage.getItem('id')!= null || localStorage.getItem('id')!='0';
+   }
+   getRole() {
+      return localStorage.getItem('role');
    }
 }

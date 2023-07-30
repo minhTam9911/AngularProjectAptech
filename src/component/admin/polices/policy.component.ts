@@ -17,6 +17,10 @@ export class PolicyAdminComponent implements OnInit {
   result: Result
   policies: Policy[];
   formAdd: FormGroup;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 10;
+  tableSizes: any = [5, 10, 15, 20];
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
     private policyService: PolicyService,
@@ -26,6 +30,9 @@ export class PolicyAdminComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getAll()
+  }
+  getAll(){
     this.policyService.findAll().then(
       res => {
         this.policies = res as Policy[];
@@ -33,6 +40,16 @@ export class PolicyAdminComponent implements OnInit {
       },
       err => { console.log(err) }
     )
+  }
+  onTableSizeChange(evt: any) {
+    this.tableSize = evt.target.value;
+    this.page = 1;
+    this.getAll();
+  }
+  onTableDataChange(evt: any) {
+    this.page = evt;
+    this.getAll();
+
   }
   async delete(id: number) {
 

@@ -3,9 +3,6 @@
     <div class="card mb-4">
       <div class="card-header pb-0">
         <h6>Policieson Employee</h6>
-        <h6 class="btn btn-success">
-          <i class="pi pi-plus" style="font-size: 1rem"></i> <a [routerLink]="['/admin/add-policieson-employee']">Add</a>
-        </h6>
         <div class="row">
           <div class="col-md-4">
             <select style="width: 20%;" (change)="onTableSizeChange($event)" class="form-select"
@@ -85,16 +82,13 @@
                   <span class="badge badge-sm bg-gradient-success">{{i.companyName}}</span>
                 </td>
                 <td class="align-middle">
-                  <button class="btn btn-info" style="margin-right:5px" (click)="update(i.id)"><i class="pi pi-cog"
-                      style="font-size: 1rem"></i> Edit</button>
-                  <button class="btn btn-danger" (click)="delete(i.id)" type="submit" pButton pRipple ><i class="pi pi-trash"
-                      style="font-size: 1rem"></i> Delete</button>
+                  <button class="btn btn-info" style="margin-right:5px" (click)="detail(i.id)"><i class="pi pi-cog"
+                      style="font-size: 1rem"></i> Detail</button>
                 </td>
               </tr>
             </tbody>
           </table>
         </ng-container>
-        
           <p-toast></p-toast>
         </div>
       </div>
