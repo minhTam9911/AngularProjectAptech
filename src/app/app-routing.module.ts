@@ -46,12 +46,14 @@ import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profil
 import { DashBoardAccountantComponent } from './accountant/dashboardAccountant.component';
 import { AuthGuardAccountant } from 'src/service/guard/authGuardAccountant.service';
 import { PolicyApprovalAccountantComponent } from './accountant/policyApprove/policyApproveAccountant.component';
-import { PolicyAccountantComponent } from './accountant/polices/policyAccountant.component';
 import { ProfileAccountantComponent } from './accountant/profile/profileAccountant.component';
 import { CompanyAccountantComponent } from './accountant/company/companyAccountant.component';
 import { HospitalAccountantComponent } from './accountant/hospital/hospitalAccountant.component';
 import { EditEmpRegisterAccountantComponent } from './accountant/empRegister/updateEmpRegisterAccountant.component';
 import { EmpRegisterAccountantComponent } from './accountant/empRegister/empRegisterAccountant.component';
+import { AddEmpRegisterAccountantComponent } from './accountant/empRegister/addEmpRegisterAccountant.component';
+import { AuthGuarIsLogin } from 'src/service/guard/authGuardForgotPass.serve';
+import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/profile/changePasswordAccountant.component';
 
 
 
@@ -62,10 +64,10 @@ const routes: Routes = [
   // {path:"register",component:RegisterComponent},
   // {path:"login-user",component:LoginComponent},
   {path:"login", component:LoginAdminComponent },
-  {path:"active-employee", component:AcctiveAccountComponent},
+  {path:"active-employee", component:AcctiveAccountComponent,canActivate:[AuthGuarIsLogin]},
   {path:"forgot-password", component:ForgotPasswordAdminComponent},
-  {path:"verify-check-code", component:VerifyCodeForgotAccountComponent},
-  {path:"change-password", component:ChangeForgotPasswordAdminComponent},
+  {path:"verify-check-code", component:VerifyCodeForgotAccountComponent,canActivate:[AuthGuarIsLogin]},
+  {path:"change-password", component:ChangeForgotPasswordAdminComponent,canActivate:[AuthGuarIsLogin]},
   {path:"", component:LoginAdminComponent },
   {path:"admin", component:DashBoardComponent,canActivate:[AuthGuardAdmin],children:[
     {path:"", component:HomeAdminComponent},
@@ -92,6 +94,8 @@ const routes: Routes = [
     {path:"policy-approval",component:PolicyApprovalComponent},
     {path:"change-password",component:ChangeForgotPasswordProfileComponent}
   ]},
+
+
   {path:"employee",component:DashBoardForEmployeeComponent,canActivate:[AuthGuardEmployee],children:[
     {path:"",component:PolicyComponentEmployee},
     {path:"home",component:PolicyComponentEmployee},
@@ -109,14 +113,17 @@ const routes: Routes = [
     {path:"home",component:PolicyApprovalAccountantComponent},
     {path:"company",component:CompanyAccountantComponent},
     {path:"hospital",component:HospitalAccountantComponent},
-    {path:"policy",component:PolicyAccountantComponent},
+    {path:"policy",component:PolicyComponentEmployee},
     {path:"policy-approval",component:PolicyApprovalAccountantComponent},
     {path:"policy-employee",component:PoliciesonEmployeeAdminComponent},
     {path:"profile",component:ProfileAccountantComponent},
     {path:"empRegister",component:EmpRegisterAccountantComponent},
+    {path:"addEmpRegister",component:AddEmpRegisterAccountantComponent},
     {path:"policieson-employee",component:PoliciesonEmployeeAdminComponent},
-    {path:"change-password",component:ChangeForgotPasswordComponent},
+    {path:"change-password",component:ChangeForgotPasswordProfileAccountantComponent  },
     {path:"edit-emp",component:EditEmpRegisterAccountantComponent},
+
+
   ]}
 ];
 

@@ -50,29 +50,64 @@ import { Result } from "src/service/result.service";
       );
     }
     async cancelRequest(id: any) {
-      await this.policyApprovalService.deleteColRequestId(id).then(
-        (res) => {
-              var result = res as boolean;
-              if(result) {
-                 this.policyRequestDetailService.delete(id).then(
-                  (res1) => {
-                    var result2 = res1 as boolean;
-                    if(result2) {
-                      this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'Cancel Request Successful',
-                      });
-                    }else{
-                      this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Cancel Request Fail',
-                      });
-                    }
-                  },err1 =>console.log(err1));
+      await   this.policyRequestDetailService.findById(id).then(
+
+
+        response => {
+              var checkColStatus = response as PolicyRequestDetail
+              if(checkColStatus.status =="Already Accepted"){
+                this.messageService.add({
+                  severity: 'warn',
+                  summary: 'Waring',
+                  detail: 'The request cannot be canceled because the request has been approved',
+                });
+              }else{
+                 this.policyApprovalService.deleteColRequestId(id).then(
+                  (res) => {
+                        var result = res as boolean;
+                        if(result) {
+                           this.policyRequestDetailService.delete(id).then(
+                            (res1) => {
+                              var result2 = res1 as boolean;
+                              if(result2) {
+                                this.messageService.add({
+                                  severity: 'success',
+                                  summary: 'Successful',
+                                  detail: 'Cancel Request Successful',
+                                });
+                              }else{
+                                this.messageService.add({
+                                  severity: 'error',
+                                  summary: 'Error',
+                                  detail: 'Cancel Request Fail',
+                                });
+                              }
+                            },err1 =>console.log(err1));
+                        }
+                },err=>console.log(err))
+                this.policyRequestDetailService.delete(id).then(
+                  res2=>{var pr = res2 as Boolean;
+                                  if (pr) {
+                                    this.messageService.add({
+                                      severity: 'success',
+                                      summary: 'Successful',
+                                      detail: 'Delete Policy Request Detail successful',
+                                    });this.getAll()
+                                  } else {
+                                    this.messageService.add({
+                                      severity: 'error',
+                                      summary: 'Fail',
+                                      detail: 'Delete Policy Request Detail Fail',
+                                    });
+                                  }      
+                  },err1=>console.log(err1)
+                )
               }
-      },err=>console.log(err))
+        }
+
+
+      )
+     
     }
   }
   

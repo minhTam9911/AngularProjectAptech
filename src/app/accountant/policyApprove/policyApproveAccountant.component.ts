@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { Router, RouterPreloader } from "@angular/router";
-import { MessageService } from "primeng/api";
+import { ConfirmEventType, ConfirmationService, MessageService } from "primeng/api";
 import { async } from "rxjs";
 import { CompanyDetail } from "src/model/companyDetail.model";
 import { EmpRegister } from "src/model/empRegister.model";
@@ -49,7 +49,8 @@ export class PolicyApprovalAccountantComponent implements OnInit {
     private companyService: CompanyDetailService,
     private policyApprovalService: PolicyApprovalDetailService,
     private hospitalService: HospitalInforService,
-    private policyEmployeeService: PoliciesonEmployeeService
+    private policyEmployeeService: PoliciesonEmployeeService,
+    private confirmationService : ConfirmationService
   ) { }
 
   ngOnInit() {
@@ -136,7 +137,7 @@ export class PolicyApprovalAccountantComponent implements OnInit {
             data3.empNo = data2.empNo;
             data3.policyId = data2.policyId
             data3.policyName = data2.policyName;
-            data3.policyStatus = true;
+            data3.policyStatus = false;
             data3.policyAmount = data2.policyAmount;
             if (data3.policyDuration == null) {
               data3.policyDuration = 30;
@@ -245,25 +246,47 @@ export class PolicyApprovalAccountantComponent implements OnInit {
     )
   }
   async delete(id: any) {
-    await this.policyApprovalService.delete(id).then(
-      res => {
-        var pa = res as boolean;
-        console.log(pa)
-        if (pa) {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Delete Policy Approval Detail successful',
-          }); this.getAll()
-        } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Fail',
-            detail: 'Delete Policy Approval Detail Fail',
-          });
-        }
-      }, err => console.error(err)
-    )
+
+    await this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.policyApprovalService.delete(id).then(
+          res => {
+            var pa = res as boolean;
+            console.log(pa)
+            if (pa) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: 'Delete Policy Approval Detail successful',
+              }); this.getAll()
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Fail',
+                detail: 'Delete Policy Approval Detail Fail',
+              });
+            }
+          }, err => console.error(err)
+        )
+        
+      },
+      reject: (type) => {
+        var typeS = type as ConfirmEventType
+          switch (typeS) {
+              case ConfirmEventType.REJECT:
+                  this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+                  break;
+              case ConfirmEventType.CANCEL:
+                  this.messageService.add({ severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+                  break;
+          }
+      }
+    });
+
+   
   }
   selectStatus(evn: any) {
     var chooser = evn.target.value;

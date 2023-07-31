@@ -7,7 +7,8 @@ import { EmpRegisterService } from "src/service/admin/empRegister.service";
 import { LoginService } from "src/service/admin/login.service";
 
 @Component({
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 

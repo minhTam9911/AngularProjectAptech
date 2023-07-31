@@ -3,11 +3,11 @@ import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterState
 import { Observable } from "rxjs";
 import { LoginService } from "../admin/login.service";
 
-export const AuthGuardEmployee :  CanActivateFn = (route,state)=>{
+export const AuthGuarIsLogin :  CanActivateFn = (route,state)=>{
     const router =inject(Router);
     const service = ɵɵinject(LoginService)
-    if(service.isLogin()&&service.getRole()=="Employee"){
-       
+    console.log(localStorage.getItem('id'))
+    if(localStorage.getItem('id')!=null){
         return true
     }else{
         router.navigate(['/login'])

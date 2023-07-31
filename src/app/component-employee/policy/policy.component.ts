@@ -18,6 +18,7 @@ import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 export class PolicyComponentEmployee implements OnInit {
   result: Result
   policies: Policy[];
+  demoData:Policy[]
   formAdd: FormGroup; page: number = 1;
   count: number = 0;
   tableSize: number = 10;
@@ -26,13 +27,15 @@ export class PolicyComponentEmployee implements OnInit {
   policyDetail:Policy;
   hospital:Hospital
   company:CompanyDetail
+  
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private policyService: PolicyService,
+   
     private router: Router,
     private confirmationService: ConfirmationService,
     private hospitalService: HospitalInforService,
-    private companyService: CompanyDetailService
+    private companyService: CompanyDetailService,
+    private policyService: PolicyService,
   ) { }
 
 
@@ -43,6 +46,7 @@ export class PolicyComponentEmployee implements OnInit {
     this.policyService.findAll().then(
       res => {
         this.policies = res as Policy[];
+        this.demoData = this.policies
         console.log(this.policies)
       },
       err => { console.log(err) }
@@ -73,5 +77,13 @@ export class PolicyComponentEmployee implements OnInit {
       },
       error=>console.log(error)
     )
+  }
+  searchName(evn:any){
+    var keyword = evn.target.value;
+    if(keyword==null){
+      this.getAll()
+    }else{
+      this.policies = this.demoData.filter(p=>p.policyName.toLowerCase().includes(keyword.toLowerCase()))
+    }
   }
 }

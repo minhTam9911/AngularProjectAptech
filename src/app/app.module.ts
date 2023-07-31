@@ -72,7 +72,6 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ChangeForgotPasswordProfileComponent } from 'src/component/admin/profile/changePassword.component';
 import { footerAccountantComponent } from './accountant/footerAccountant.component';
 import { DashBoardAccountantComponent } from './accountant/dashboardAccountant.component';
-import { PolicyAccountantComponent } from './accountant/polices/policyAccountant.component';
 import { PolicyApprovalAccountantComponent } from './accountant/policyApprove/policyApproveAccountant.component';
 import { HospitalAccountantComponent } from './accountant/hospital/hospitalAccountant.component';
 import { CompanyAccountantComponent } from './accountant/company/companyAccountant.component';
@@ -130,7 +129,6 @@ import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/pro
      ChangeForgotPasswordProfileComponent,
      footerAccountantComponent,
       DashBoardAccountantComponent,
-      PolicyAccountantComponent,
       PolicyApprovalAccountantComponent,
       HospitalAccountantComponent,
       CompanyAccountantComponent,

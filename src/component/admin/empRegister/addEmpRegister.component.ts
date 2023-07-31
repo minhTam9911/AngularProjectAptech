@@ -71,7 +71,7 @@ export class AddEmpRegisterAdminComponent implements OnInit {
           this.messageService.add({ severity: "success", summary: "Add Emp Register", detail: "Emp Register add successful" })
         }
         else{
-          this.messageService.add({ severity: "error", summary: "Add Emp Register", detail: "Company add fail. " + String(this.result['result']) })
+          this.messageService.add({ severity: "error", summary: "Add Emp Register", detail: "Emp Register add fail. " + String(this.result['result']) })
         }
       },
       err => console.log(err)

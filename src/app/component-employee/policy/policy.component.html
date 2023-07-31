@@ -16,7 +16,7 @@
           <div class="col-md-4" style="float: right">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Enter name...">
+              <input type="text" class="form-control" placeholder="Enter name..." (keyup)="searchName($event)">
             </div>
           </div>
         </div>
@@ -32,9 +32,9 @@
                   <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder ">Policy
                     Name
                   </th>
-                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Amount
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Amount ($)
                   </th>
-                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Emi</th>
+                  <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Emi ($)</th>
                   <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Company Id
                   </th>
                   <th class="text-center text-uppercase text-dark text-xxs font-weight-bolder">Company
