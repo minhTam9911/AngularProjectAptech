@@ -35,6 +35,9 @@ async delete(id: number){
 async update(policiesonEmployee: PoliciesonEmployee){
     return await lastValueFrom(this.http.put(this.baseUrl + "policy-employee/update", policiesonEmployee));
 }
+async update2(policiesonEmployee: FormData){
+    return await lastValueFrom(this.http.put(this.baseUrl + "policy-employee/update2", policiesonEmployee));
+}
 async findById(id: number){
     return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/find/"+id));
 }

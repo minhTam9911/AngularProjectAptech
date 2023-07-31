@@ -10,7 +10,7 @@
               *ngIf="formLogin.hasError('required',['username'])">Username
               shouldn't be empty</span>
           </div>
-          <ion-icon name="mail-outline"></ion-icon>
+          
           <input type="text" required formControlName="username">
           <label for="">Username</label>
         </div>
@@ -20,7 +20,7 @@
               *ngIf="formLogin.hasError('required',['password'])">Password
               shouldn't be empty</span>
           </div>
-          <ion-icon name="lock-closed-outline"></ion-icon>
+         
           <input type="password" required formControlName="password">
           <label for="">Password</label>
         </div>

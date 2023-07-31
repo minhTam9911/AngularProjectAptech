@@ -39,7 +39,8 @@ export class EmpRegisterAdminComponent implements OnInit {
   getAll() {
     this.employeeService.findAll().then(
       res => {
-        this.empRegisteres = res as EmpRegister[];
+        var resultData = res as EmpRegister[];
+        this.empRegisteres = resultData.filter(emp =>emp.designation !="Admin")
         console.log(res)
       },
       err => { console.log(err) }

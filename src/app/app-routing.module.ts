@@ -54,6 +54,8 @@ import { EmpRegisterAccountantComponent } from './accountant/empRegister/empRegi
 import { AddEmpRegisterAccountantComponent } from './accountant/empRegister/addEmpRegisterAccountant.component';
 import { AuthGuarIsLogin } from 'src/service/guard/authGuardForgotPass.serve';
 import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/profile/changePasswordAccountant.component';
+import { TransactionAccountantComponent } from './accountant/transaction/transaction.component';
+import { HistoryComponent } from './component-employee/history/history.component';
 
 
 
@@ -91,8 +93,9 @@ const routes: Routes = [
     {path:"policy-request", component:PolicyRequestDetailComponent},
     {path:"add-policy-request", component:AddPolicyRequestDetailComponent},
     {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
-    {path:"policy-approval",component:PolicyApprovalComponent},
-    {path:"change-password",component:ChangeForgotPasswordProfileComponent}
+    {path:"policy-approval",component:PolicyApprovalAccountantComponent},
+    {path:"change-password",component:ChangeForgotPasswordProfileComponent},
+    {path:"transaction",component:TransactionAccountantComponent}
   ]},
 
 
@@ -105,7 +108,8 @@ const routes: Routes = [
     {path:"policy-employee",component:PoliciesonEmployeeEmployeeComponent},
     {path:"profile",component:ProfileEmployeeComponent},
     {path:"policieson-employee",component:PoliciesonEmployeeEmployeeComponent},
-    {path:"change-password",component:ChangeForgotPasswordComponent}
+    {path:"change-password",component:ChangeForgotPasswordComponent},
+    {path:"history",component:HistoryComponent},
   ]},
 
   {path:"accountant",component:DashBoardAccountantComponent,canActivate:[AuthGuardAccountant],children:[
@@ -122,7 +126,7 @@ const routes: Routes = [
     {path:"policieson-employee",component:PoliciesonEmployeeAdminComponent},
     {path:"change-password",component:ChangeForgotPasswordProfileAccountantComponent  },
     {path:"edit-emp",component:EditEmpRegisterAccountantComponent},
-
+    {path:"transaction",component:TransactionAccountantComponent}
 
   ]}
 ];

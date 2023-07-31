@@ -139,10 +139,9 @@ export class PolicyApprovalAccountantComponent implements OnInit {
             data3.policyName = data2.policyName;
             data3.policyStatus = false;
             data3.policyAmount = data2.policyAmount;
+            data3.startDate = data.date;
             if (data3.policyDuration == null) {
-              data3.policyDuration = 30;
-            } else {
-              data3.policyDuration += 30;
+              data3.policyDuration = 0;
             }
             data3.emi = data2.emi;
             data3.companyId = data2.companyId;

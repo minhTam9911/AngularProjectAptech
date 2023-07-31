@@ -80,6 +80,9 @@ import { AddEmpRegisterAccountantComponent } from './accountant/empRegister/addE
 import { EmpRegisterAccountantComponent } from './accountant/empRegister/empRegisterAccountant.component';
 import { EditEmpRegisterAccountantComponent } from './accountant/empRegister/updateEmpRegisterAccountant.component';
 import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/profile/changePasswordAccountant.component';
+import { TransactionAccountantComponent } from './accountant/transaction/transaction.component';
+import { TransactionDetailService } from 'src/service/admin/transactionDetail.service';
+import { HistoryComponent } from './component-employee/history/history.component';
 
 
 @NgModule({
@@ -136,8 +139,9 @@ import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/pro
       AddEmpRegisterAccountantComponent,
       EmpRegisterAccountantComponent,
       EditEmpRegisterAccountantComponent,
-      ChangeForgotPasswordProfileAccountantComponent
-
+      ChangeForgotPasswordProfileAccountantComponent,
+      TransactionAccountantComponent,
+      HistoryComponent
    
      
   ],
@@ -160,7 +164,7 @@ import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/pro
     RadioButtonModule,
     PasswordModule,
     DropdownModule,
-    OverlayPanelModule
+    OverlayPanelModule,
   ],
   providers: [MessageService,
     ConfirmationService,
@@ -172,7 +176,8 @@ import { ChangeForgotPasswordProfileAccountantComponent } from './accountant/pro
     LoginService,
     PoliciesonEmployeeService,
     PolicyRequestDetailService,
-    PolicyApprovalDetailService
+    PolicyApprovalDetailService,
+    TransactionDetailService
   ],
   bootstrap: [AppComponent]
 })

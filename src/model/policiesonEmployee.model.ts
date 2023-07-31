@@ -9,4 +9,6 @@ export class PoliciesonEmployee{
             emi :Number;
             companyId :Number;
             companyName :String;
+            startDate :String;
+            endDate :String
 }
