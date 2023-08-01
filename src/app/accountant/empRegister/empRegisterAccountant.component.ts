@@ -24,6 +24,7 @@ export class EmpRegisterAccountantComponent implements OnInit {
   tableSize: number = 10;
   tableSizes: any = [5, 10, 15, 20];
   displayModal: boolean;
+  demoData:EmpRegister[]
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
     private companyService: CompanyDetailService,
@@ -40,6 +41,7 @@ export class EmpRegisterAccountantComponent implements OnInit {
     this.employeeService.findAll().then(
       res => {var result = res as EmpRegister[];
         this.empRegisteres = result.filter(e=>e.designation.includes("Employee"))
+        this.demoData = this.empRegisteres
         console.log(res)
       },
       err => { console.log(err) }
@@ -107,5 +109,13 @@ export class EmpRegisterAccountantComponent implements OnInit {
     )
     this.displayModal = true;
 
+  }
+  searchName(evn:any){
+    var keyword = evn.target.value;
+    if(keyword==null){
+      this.getAll()
+    }else{
+      this.empRegisteres = this.demoData.filter(p=>p.email.toLowerCase().includes(keyword.toLowerCase()))
+    }
   }
 }

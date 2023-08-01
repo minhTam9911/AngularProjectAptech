@@ -18,6 +18,7 @@ export class EmpRegisterAdminComponent implements OnInit {
   companies: CompanyDetail[];
   formAdd: FormGroup;
   empRegisteres: EmpRegister[]
+  demoData: EmpRegister[]
   emp: EmpRegister
   page: number = 1;
   count: number = 0;
@@ -41,6 +42,7 @@ export class EmpRegisterAdminComponent implements OnInit {
       res => {
         var resultData = res as EmpRegister[];
         this.empRegisteres = resultData.filter(emp =>emp.designation !="Admin")
+        this.demoData = this.empRegisteres
         console.log(res)
       },
       err => { console.log(err) }
@@ -108,5 +110,12 @@ export class EmpRegisterAdminComponent implements OnInit {
     )
     this.displayModal = true;
 
+  }searchName(evn:any){
+    var keyword = evn.target.value;
+    if(keyword==null){
+      this.getAll()
+    }else{
+      this.empRegisteres = this.demoData.filter(p=>p.email.toLowerCase().includes(keyword.toLowerCase()))
+    }
   }
 }

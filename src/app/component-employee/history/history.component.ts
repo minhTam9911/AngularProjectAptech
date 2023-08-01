@@ -26,14 +26,41 @@ export class HistoryComponent  implements OnInit {
         private transactionService: TransactionDetailService
       ) { }
     ngOnInit(){
-       this.transactionService.findByColEmpNo(parseInt(localStorage.getItem('id'))).then(
-        res=>{
-            this.history = res as TransactionDetail[];
-            console.log(res)
-            this.empRegisterService.findById(parseInt(localStorage.getItem('id'))).then(
-                res2=>this.emp = res2 as EmpRegister
-            )
+       this.get()
+    }
+    get(){
+        if(localStorage.getItem('role')=="Admin"){
+            this.transactionService.findAll().then(
+                res=>{
+                    this.history = res as TransactionDetail[];
+                    console.log(res)
+                    this.empRegisterService.findById(parseInt(localStorage.getItem('id'))).then(
+                        res2=>this.emp = null
+                    )
+                }
+               )
         }
-       )
+        else if(localStorage.getItem('role')=="Accountant"){
+            this.transactionService.findByColAccountant(parseInt(localStorage.getItem('id'))).then(
+                res=>{
+                    this.history = res as TransactionDetail[];
+                    console.log(res)
+                    this.empRegisterService.findById(parseInt(localStorage.getItem('id'))).then(
+                        res2=>this.emp =null
+                    )
+                }
+               )
+        }
+        else{
+            this.transactionService.findByColEmpNo(parseInt(localStorage.getItem('id'))).then(
+                res=>{
+                    this.history = res as TransactionDetail[];
+                    console.log(res)
+                    this.empRegisterService.findById(parseInt(localStorage.getItem('id'))).then(
+                        res2=>this.emp = res2 as EmpRegister
+                    )
+                }
+               )
+        }
     }
 }

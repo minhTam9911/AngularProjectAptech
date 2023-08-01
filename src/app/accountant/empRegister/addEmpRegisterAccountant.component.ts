@@ -36,7 +36,7 @@ export class AddEmpRegisterAccountantComponent implements OnInit {
       err => { console.log(err) }
     )
     this.formAdd = this.formBuilder.group({
-      designation: ["", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+      designation: ["Employee", [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
       joinDate: ['', Validators.required],
       salary: ["", [Validators.required, Validators.pattern("^[0-9]+(.[0-9]{0,2})?$")]],
       firstName: ["", [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],

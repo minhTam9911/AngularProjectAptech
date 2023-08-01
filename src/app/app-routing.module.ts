@@ -62,7 +62,7 @@ import { HistoryComponent } from './component-employee/history/history.component
 
 
 const routes: Routes = [
-  // {path:"home", component:HomeComponent },
+   {path:"", component:HomeComponent },
   // {path:"register",component:RegisterComponent},
   // {path:"login-user",component:LoginComponent},
   {path:"login", component:LoginAdminComponent },
@@ -70,7 +70,7 @@ const routes: Routes = [
   {path:"forgot-password", component:ForgotPasswordAdminComponent},
   {path:"verify-check-code", component:VerifyCodeForgotAccountComponent,canActivate:[AuthGuarIsLogin]},
   {path:"change-password", component:ChangeForgotPasswordAdminComponent,canActivate:[AuthGuarIsLogin]},
-  {path:"", component:LoginAdminComponent },
+  {path:"home", component:LoginAdminComponent },
   {path:"admin", component:DashBoardComponent,canActivate:[AuthGuardAdmin],children:[
     {path:"", component:HomeAdminComponent},
     {path:"dashboard", component:HomeAdminComponent},
@@ -95,7 +95,8 @@ const routes: Routes = [
     {path:"update-policy-request", component:UpdatePolicyRequestDetailsComponent},
     {path:"policy-approval",component:PolicyApprovalAccountantComponent},
     {path:"change-password",component:ChangeForgotPasswordProfileComponent},
-    {path:"transaction",component:TransactionAccountantComponent}
+    {path:"transaction",component:TransactionAccountantComponent},
+    {path:"history",component:HistoryComponent},
   ]},
 
 
@@ -124,9 +125,10 @@ const routes: Routes = [
     {path:"empRegister",component:EmpRegisterAccountantComponent},
     {path:"addEmpRegister",component:AddEmpRegisterAccountantComponent},
     {path:"policieson-employee",component:PoliciesonEmployeeAdminComponent},
-    {path:"change-password",component:ChangeForgotPasswordProfileAccountantComponent  },
+    {path:"change-password",component:ChangeForgotPasswordComponent  },
     {path:"edit-emp",component:EditEmpRegisterAccountantComponent},
-    {path:"transaction",component:TransactionAccountantComponent}
+    {path:"transaction",component:TransactionAccountantComponent},
+    {path:"history",component:HistoryComponent},
 
   ]}
 ];

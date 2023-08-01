@@ -7,6 +7,8 @@ import { Result } from "src/service/result.service";
 import { Router } from "@angular/router";
 import { Policy } from "src/model/policy.model";
 import { PolicyService } from "src/service/admin/policy.service";
+import { Hospital } from "src/model/hospitalInfo.model";
+import { HospitalInforService } from "src/service/admin/hospitalInfo.service";
 
 @Component({
   templateUrl: './policy.component.html'
@@ -21,11 +23,18 @@ export class PolicyAdminComponent implements OnInit {
   count: number = 0;
   tableSize: number = 10;
   tableSizes: any = [5, 10, 15, 20];
+  visible: boolean = false;
+  policyDetail:Policy;
+  hospital:Hospital
+  company:CompanyDetail
+  demoData:Policy[]
   constructor(private formBuilder: FormBuilder,
     private messageService: MessageService,
     private policyService: PolicyService,
     private router: Router,
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private hospitalService: HospitalInforService,
+    private companyService: CompanyDetailService,
   ) { }
 
 
@@ -36,7 +45,7 @@ export class PolicyAdminComponent implements OnInit {
     this.policyService.findAll().then(
       res => {
         this.policies = res as Policy[];
-        console.log(this.policies)
+        this.demoData = this.policies
       },
       err => { console.log(err) }
     )
@@ -99,5 +108,29 @@ export class PolicyAdminComponent implements OnInit {
   }
   update(id: number) {
     this.router.navigate(["/admin/update-policy", { policyId: id }])
+  }
+  async detail(id: any){
+    this.visible = true;
+    this.policyService.findById(id).then(
+      res=>{this.policyDetail = res as Policy;
+            this.hospitalService.findById(this.policyDetail.medicalid).then(
+              res1=>
+              this.hospital = res1 as Hospital
+            )
+            this.companyService.findById(this.policyDetail.companyId).then(
+              res2=>
+              this.company = res2 as CompanyDetail
+            )
+      },
+      error=>console.log(error)
+    )
+  }
+  searchName(evn:any){
+    var keyword = evn.target.value;
+    if(keyword==null){
+      this.getAll()
+    }else{
+      this.policies = this.demoData.filter(p=>p.policyName.toLowerCase().includes(keyword.toLowerCase()))
+    }
   }
 }

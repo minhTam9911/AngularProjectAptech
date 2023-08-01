@@ -19,6 +19,7 @@ export class    CompanyAdminComponent implements OnInit {
     count : number = 0;
     tableSize : number=10;
     tableSizes :any = [5,10,15,20];
+    dataDemo:CompanyDetail[]
     constructor(private formBuilder: FormBuilder,
         private messageService: MessageService,
         private companyService: CompanyDetailService,
@@ -34,7 +35,7 @@ export class    CompanyAdminComponent implements OnInit {
       this.companyService.findAll().then(
         res =>{
             this.companies = res as CompanyDetail[];
-            console.log(this.companies)
+            this.dataDemo =res as CompanyDetail[];
         },
         err =>{console.log(err)}
       )
@@ -94,5 +95,13 @@ export class    CompanyAdminComponent implements OnInit {
     }
      update(id:number){
       this.router.navigate(["/admin/update-company",{companyId:id}])
+    }
+    search(evn:any){
+      var key = evn.target.value as string;
+      if(key!=null || key!=""){
+        this.companies = this.dataDemo.filter(a=>a.companyName.toLowerCase().includes(key.toLowerCase()))
+      }else{
+        this.companies = this.dataDemo
+      }
     }
 }

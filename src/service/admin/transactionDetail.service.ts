@@ -43,4 +43,13 @@ async findById(id: number){
 async findByColEmpNo(id: number){
     return await lastValueFrom(this.http.get(this.baseUrl + "transaction/find-col-empno/"+id));
 }
+async findByColAccountant(id: number){
+    return await lastValueFrom(this.http.get(this.baseUrl + "transaction/find-col-account/"+id));
+}
+async moneyAll(){
+    return await lastValueFrom(this.http.get(this.baseUrl + "transaction/money-all"));
+}
+async moneyByColEmpNo(id: number){
+    return await lastValueFrom(this.http.get(this.baseUrl + "transaction/money-col-empno/"+id));
+}
 }

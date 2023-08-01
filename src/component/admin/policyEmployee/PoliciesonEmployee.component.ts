@@ -20,6 +20,7 @@ import { PolicyService } from "src/service/admin/policy.service";
 export class    PoliciesonEmployeeAdminComponent implements OnInit {
     result: Result
     policiesonEmployee: PoliciesonEmployee[];
+    demoData:PoliciesonEmployee[]
     formAdd: FormGroup;
     page : number=1;
     count : number = 0;
@@ -54,6 +55,7 @@ export class    PoliciesonEmployeeAdminComponent implements OnInit {
       this.policyEmpService.findAll().then(
         res =>{
             this.policiesonEmployee = res as PoliciesonEmployee[];
+            this.demoData = this.policiesonEmployee 
             console.log(this.policiesonEmployee)
         },
         err =>{console.log(err)}
@@ -129,4 +131,14 @@ export class    PoliciesonEmployeeAdminComponent implements OnInit {
       }
       )
     }
+ 
+      search(evn:any){
+        var keyword = evn.target.value;
+        if(keyword==null){
+          this.getAll()
+        }else{
+          this.policiesonEmployee = this.demoData.filter(p=>p.empNo.toString().includes(keyword.toLowerCase()))
+        }
+      }
+    
 }

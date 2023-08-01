@@ -20,7 +20,7 @@
           <div class="col-md-4" style="float: right">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Enter name...">
+              <input type="text" class="form-control" (keyup)="search($event)" placeholder="Enter id employee...">
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
                         class="pi pi-cog" style="font-size: 1rem"></i> Edit</button>
                     <button class="btn btn-danger" *ngIf="btn" (click)="delete(i.id)" type="submit" pButton pRipple><i
                         class="pi pi-trash" style="font-size: 1rem"></i> Delete</button>
-                    <button class="btn btn-info" (click)="detail(i.id)" type="submit" pButton pRipple><i
+                    <button style="margin-left: 5px;" class="btn btn-info" (click)="detail(i.id)" type="submit" pButton pRipple><i
                         class="pi pi-list" style="font-size: 1rem"></i> Detail</button>
                   </td>
                 </tr>

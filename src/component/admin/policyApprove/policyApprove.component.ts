@@ -128,11 +128,8 @@ export class PolicyApprovalComponent implements OnInit {
                       data3.policyName=data2.policyName;
                       data3.policyStatus=true;
                       data3.policyAmount = data2.policyAmount;
-                      if(data3.policyDuration == null){
-                        data3.policyDuration = 30;
-                      }else{
-                        data3.policyDuration += 30;
-                      }
+                      data3.policyDuration=0
+                      data3.startDate = data.date;
                       data3.emi = data2.emi;
                       data3.companyId = data2.companyId;
                       data3.companyName = data2.companyName;
@@ -178,7 +175,59 @@ export class PolicyApprovalComponent implements OnInit {
     )
   }
   async refuse(id: any) {
+    await this.policyApprovalService.findById(id).then(
+      res => {
+        var data: PolicyApprovalDetail = res as PolicyApprovalDetail;
+        data.status = "Refuse"
+        var formData = new FormData();
+        formData.append("strPolicyApproval", JSON.stringify(data));
+        this.policyApprovalService.update(formData).then(
+          resPA => {
+            var pa = resPA as boolean;
+            if (pa) {
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Successful',
+                detail: ' Policy Approval Detail Update successful',
+              }); this.getAll()
+            } else {
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Fail',
+                detail: 'Update Policy Approval Detail Fail',
+              });
+            }
+          }, errPA => console.error(errPA)
+        )
 
+        this.policyRequestDetailService.findById(data.requestId).then(
+          res2 => {
+            var data2 = res2 as PolicyRequestDetail;
+            data2.status = "Refuse";
+            var formdata2 = new FormData();
+            formdata2.append("strPolicyRequest", JSON.stringify(data2));
+            this.policyRequestDetailService.update(formdata2).then(
+              resPR => {
+                var pr = resPR as boolean;
+                if (pr) {
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: ' Policy Request Detail Update successful',
+                  }); this.getAll()
+                } else {
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Fail',
+                    detail: 'Update Policy Request Detail Fail',
+                  });
+                }
+              }, errPr => console.error(errPr)
+            )
+          }, err1 => console.log(err1)
+        )
+      }, err2 => console.log(err2)
+    )
   }
   async delete(id: any) {
   await this.policyApprovalService.delete(id).then(

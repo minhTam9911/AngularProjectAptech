@@ -19,7 +19,7 @@
           <div class="col-md-4" style="float: right">
             <div class="input-group">
               <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" placeholder="Enter name...">
+              <input type="text" class="form-control" (keyup)="searchName($event)" placeholder="Enter name...">
             </div>
           </div>
         </div>

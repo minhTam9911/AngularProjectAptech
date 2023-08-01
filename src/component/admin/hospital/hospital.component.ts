@@ -16,6 +16,7 @@ import { Hospital } from "src/model/hospitalInfo.model";
 export class HospitalAdminComponent implements OnInit {
   result: Result
   hospitales: Hospital[];
+  demoData:Hospital[]
   formAdd: FormGroup;
   page: number = 1;
   count: number = 0;
@@ -36,7 +37,7 @@ export class HospitalAdminComponent implements OnInit {
     this.hospitalService.findAll().then(
       res => {
         this.hospitales = res as Hospital[];
-        console.log(this.hospitales)
+        this.demoData = this.hospitales
       },
       err => { console.log(err) }
     )
@@ -97,5 +98,13 @@ export class HospitalAdminComponent implements OnInit {
   }
   update(id: number) {
     this.router.navigate(["/admin/update-hospital", { hospitalId: id }])
+  }
+  searchName(evn:any){
+    var keyword = evn.target.value;
+    if(keyword==null){
+      this.getAll()
+    }else{
+      this.hospitales = this.demoData.filter(p=>p.hospitalName.toLowerCase().includes(keyword.toLowerCase()))
+    }
   }
 }

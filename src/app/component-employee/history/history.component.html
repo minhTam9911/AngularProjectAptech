@@ -135,7 +135,11 @@ text-decoration:line-through;;
           
                       <li class="mt-25">
                         <i class="fa fa-check text-success-m2 text-110 mr-2 mt-1"></i>
-                        <span class="text-110">By: {{emp.empNo}} -  {{emp.firstName}} {{emp.lastName}}
+                        <span class="text-110">By: {{i.empNo}} -  
+                            <ng-container *ngIf="emp !=null"> 
+                                {{emp.firstName}} {{emp.lastName}}
+                            </ng-container>
+                            
                       </span>
                       </li>
           
