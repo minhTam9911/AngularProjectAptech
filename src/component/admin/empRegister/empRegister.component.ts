@@ -19,7 +19,7 @@ export class EmpRegisterAdminComponent implements OnInit {
   formAdd: FormGroup;
   empRegisteres: EmpRegister[]
   demoData: EmpRegister[]
-  emp: EmpRegister
+  emp1: EmpRegister
   page: number = 1;
   count: number = 0;
   tableSize: number = 10;
@@ -41,9 +41,10 @@ export class EmpRegisterAdminComponent implements OnInit {
     this.employeeService.findAll().then(
       res => {
         var resultData = res as EmpRegister[];
+       
         this.empRegisteres = resultData.filter(emp =>emp.designation !="Admin")
         this.demoData = this.empRegisteres
-        console.log(res)
+     
       },
       err => { console.log(err) }
     )
@@ -105,7 +106,7 @@ export class EmpRegisterAdminComponent implements OnInit {
   }
   async showModelDialog(emp: number) {
     await this.employeeService.findById(emp).then(
-      res => this.emp = res as EmpRegister,
+      res => {this.emp1 = res as EmpRegister;},
       err => console.log(err)
     )
     this.displayModal = true;

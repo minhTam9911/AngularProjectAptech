@@ -41,6 +41,9 @@ async update2(policiesonEmployee: FormData){
 async findById(id: number){
     return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/find/"+id));
 }
+async existPE(p:any,e:any){
+    return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/exist-pe/"+p+"/"+e));
+}
 
 async findByColEmpNo(id: number){
     return await lastValueFrom(this.http.get(this.baseUrl + "policy-employee/find-col-empno/"+id));

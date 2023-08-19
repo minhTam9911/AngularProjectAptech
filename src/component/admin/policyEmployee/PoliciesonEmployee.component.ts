@@ -56,7 +56,7 @@ export class    PoliciesonEmployeeAdminComponent implements OnInit {
         res =>{
             this.policiesonEmployee = res as PoliciesonEmployee[];
             this.demoData = this.policiesonEmployee 
-            console.log(this.policiesonEmployee)
+           
         },
         err =>{console.log(err)}
       )

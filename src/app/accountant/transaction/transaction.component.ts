@@ -88,7 +88,7 @@ export class TransactionAccountantComponent implements OnInit {
                                     data2.append("strpoliciesonEmployee",JSON.stringify(response2))
                                     console.log(response2)
                                     this.policyEmployeeService.update2(data2).then(
-                                        res=>console.log(res),
+                                        res=>this.router.navigate(['/transaction']),
                                         err=>console.log(err)
                                     )
                             }

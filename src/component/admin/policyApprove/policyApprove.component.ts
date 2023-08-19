@@ -76,7 +76,7 @@ export class PolicyApprovalComponent implements OnInit {
  async getAll() {
     await this.policyApprovalService.findAll().then(
       res => { this.policyApproval = res as PolicyApprovalDetail[] ;
-        this.resultShowData = this.policyApproval},
+      },
       err => { console.log(err) }
     )
   }

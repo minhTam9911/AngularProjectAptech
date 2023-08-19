@@ -68,8 +68,8 @@ const routes: Routes = [
   {path:"login", component:LoginAdminComponent },
   {path:"active-employee", component:AcctiveAccountComponent,canActivate:[AuthGuarIsLogin]},
   {path:"forgot-password", component:ForgotPasswordAdminComponent},
-  {path:"verify-check-code", component:VerifyCodeForgotAccountComponent,canActivate:[AuthGuarIsLogin]},
-  {path:"change-password", component:ChangeForgotPasswordAdminComponent,canActivate:[AuthGuarIsLogin]},
+  {path:"verify-check-code", component:VerifyCodeForgotAccountComponent},
+  {path:"change-password", component:ChangeForgotPasswordAdminComponent},
   {path:"home", component:LoginAdminComponent },
   {path:"admin", component:DashBoardComponent,canActivate:[AuthGuardAdmin],children:[
     {path:"", component:HomeAdminComponent},

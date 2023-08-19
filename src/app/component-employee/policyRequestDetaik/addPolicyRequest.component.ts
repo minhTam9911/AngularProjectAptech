@@ -8,6 +8,7 @@ import { PolicyRequestDetail } from "src/model/policyRequestDetail.model";
 import { EmpRegisterService } from "src/service/admin/empRegister.service";
 import { PolicyService } from "src/service/admin/policy.service";
 import { PolicyApprovalDetailService } from "src/service/admin/policyApprovalDetail.service";
+import { PoliciesonEmployeeService } from "src/service/admin/policyEmployee.service";
 import { PolicyRequestDetailService } from "src/service/admin/policyRequestDetail.service";
 
 @Component({
@@ -32,7 +33,8 @@ export class AddPolicyRequestDetailComponentEmployee implements OnInit {
     private policyRequestDetailService: PolicyRequestDetailService,
     private policyService: PolicyService,
     private empRegistersService: EmpRegisterService,
-    private policyApprovalService: PolicyApprovalDetailService
+    private policyApprovalService: PolicyApprovalDetailService,
+    private policyEmpservice: PoliciesonEmployeeService
   ) { }
 
   ngOnInit(): void {
@@ -61,66 +63,83 @@ export class AddPolicyRequestDetailComponentEmployee implements OnInit {
     });
   }
   async save() {
+   
     var policyRequestDetailSave: PolicyRequestDetail = this.formAdd
       .value as PolicyRequestDetail;
-    var policyApproval = new PolicyApprovalDetail();
-      policyApproval.policyId = policyRequestDetailSave.policyId;
-      policyApproval.requestId = policyRequestDetailSave.requestId;
-      policyApproval.date = policyRequestDetailSave.requestDate;
-      policyApproval.amount = policyRequestDetailSave.policyAmount;
-      policyApproval.status = policyRequestDetailSave.status;
-     
-    console.log(policyRequestDetailSave);
-    var data1 = new FormData();
-    var data2 = new FormData();
-    data1.append(
-      'strPolicyRequest',
-      JSON.stringify(policyRequestDetailSave)
-    );
-   
-    console.log(data1);
-    await this.policyRequestDetailService.create(data1).then(
-      (result) => {
-        policyRequestDetailSave.requestId = result as Number;
-        policyApproval.requestId = policyRequestDetailSave.requestId;
-        if (policyRequestDetailSave.requestId!=0) {
-         
-          data2.append("strPolicyApproval",JSON.stringify(policyApproval))
-           this.policyApprovalService.create(data2).then(
-            (result) => {
-              this.result = result as boolean;
-              if (this.result) {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Successful',
-                  detail: ' Policy Approval Detail Add successful',
-                });
-              } else {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Fail',
-                  detail: 'Add Policy Approval Detail Fail',
-                });
-              }
-            },
-            (err) => console.log(err)
-          );
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: ' Policy Request Detail Add successful',
-          });
-        } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Fail',
-            detail: 'Add Policy Request Fail',
-          });
-        }
-      },
-      (err) => console.log(err)
-    );
 
+      await this.policyEmpservice.existPE(policyRequestDetailSave.policyId,parseInt(localStorage.getItem('id'))).then(
+        test=>{
+            var check = test as boolean;
+            if(check) {
+              this.messageService.add({
+                severity: 'warn',
+                summary: 'Waring',
+                detail: "can't make request because you own the policy",
+              });
+            }else{
+              var policyApproval = new PolicyApprovalDetail();
+              policyApproval.policyId = policyRequestDetailSave.policyId;
+              policyApproval.requestId = policyRequestDetailSave.requestId;
+              policyApproval.date = policyRequestDetailSave.requestDate;
+              policyApproval.amount = policyRequestDetailSave.policyAmount;
+              policyApproval.status = policyRequestDetailSave.status;
+             
+            console.log(policyRequestDetailSave);
+            var data1 = new FormData();
+            var data2 = new FormData();
+            data1.append(
+              'strPolicyRequest',
+              JSON.stringify(policyRequestDetailSave)
+            );
+           
+            console.log(data1);
+             this.policyRequestDetailService.create(data1).then(
+              (result) => {
+                policyRequestDetailSave.requestId = result as Number;
+                policyApproval.requestId = policyRequestDetailSave.requestId;
+                if (policyRequestDetailSave.requestId!=0) {
+                 
+                  data2.append("strPolicyApproval",JSON.stringify(policyApproval))
+                   this.policyApprovalService.create(data2).then(
+                    (result) => {
+                      this.result = result as boolean;
+                      if (this.result) {
+                        this.messageService.add({
+                          severity: 'success',
+                          summary: 'Successful',
+                          detail: ' Policy Approval Detail Add successful',
+                        });
+                      } else {
+                        this.messageService.add({
+                          severity: 'error',
+                          summary: 'Fail',
+                          detail: 'Add Policy Approval Detail Fail',
+                        });
+                      }
+                    },
+                    (err) => console.log(err)
+                  );
+                  this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: ' Policy Request Detail Add successful',
+                  });
+                } else {
+                  this.messageService.add({
+                    severity: 'error',
+                    summary: 'Fail',
+                    detail: 'Add Policy Request Fail',
+                  });
+                }
+              },
+              (err) => console.log(err)
+            );
+        
+            }
+        }
+      )
+
+   
     
   }
   async selectedPolicy(evn: any) {

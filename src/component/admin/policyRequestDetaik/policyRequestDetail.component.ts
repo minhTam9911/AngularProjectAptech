@@ -40,7 +40,7 @@ import { Result } from "src/service/result.service";
       this.policyRequestDetailService.findAll().then(
         (res) => {
           this.policyRequestDetails = res as PolicyRequestDetail[];
-          console.log(this.policyRequestDetails);
+         
         },
         (err) => {
           console.log(err);
